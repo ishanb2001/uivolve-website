@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Component Library</title>
+    <style>
+        /* CSS Reset and Base Styles */
+        :root {
+            --primary: #000000;
+            --secondary: #666666;
+            --accent: #0070f3;
+            --background: #ffffff;
+            --card-bg: #f5f5f5;
+            --border: #eaeaea;
+            --sidebar-width: 240px;
+            --header-height: 64px;
+            --transition-speed: 0.3s;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            --radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: white;
+            color: var(--primary);
+            overflow-x: hidden;
+        }
+
+        /* Layout */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--background);
+            border-right: 1px solid var(--border);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            transition: transform var(--transition-speed);
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+
+        .sidebar-section {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-section-title {
+            padding: 0 20px;
+            margin-bottom: 10px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--secondary);
+        }
+
+        .sidebar-nav-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            color: var(--primary);
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .sidebar-nav-item:hover {
+            background-color: var(--card-bg);
+        }
+
+        .sidebar-nav-item.active {
+            background-color: var(--card-bg);
+            font-weight: 500;
+        }
+
+        .sidebar-nav-item svg {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            transition: margin var(--transition-speed);
+        }
+
+        /* Header */
+        .header {
+            height: var(--header-height);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            position: sticky;
+            top: 0;
+            background-color: var(--background);
+            z-index: 100;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            background-color: var(--card-bg);
+        }
+
+        .search-bar svg {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            gap: 10px;
+        }
+
+        .header-btn {
+            padding: 8px 16px;
+            background-color: var(--background);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .header-btn:hover {
+            background-color: var(--card-bg);
+        }
+
+        .header-btn:active {
+            background-color: #ebebeb;
+        }
+
+        .header-btn.primary {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+        }
+
+        .header-btn.primary:hover {
+            background-color: #0060df;
+        }
+
+        /* Content Area */
+        .content {
+            padding: 40px;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        /* Add this to your CSS section */
+.code-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.code-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.code-overlay-content {
+    background-color: var(--background);
+    border-radius: var(--radius);
+    width: 90%;
+    height: 500px;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.code-overlay.active .code-overlay-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.code-overlay-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.code-overlay-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.code-overlay-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--primary);
+}
+
+.code-overlay-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+}
+
+.code-tab {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--primary);
+}
+
+.code-tab.active {
+    border-bottom-color: var(--accent);
+    font-weight: 500;
+}
+
+.code-overlay-body {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: calc(90vh - 120px);
+}
+
+.code-content {
+    margin: 0;
+    white-space: pre-wrap;
+    height: 330px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    background-color: var(--card-bg);
+    padding: 15px;
+    border-radius: var(--radius);
+    overflow-x: auto;
+}
+
+/* Style for the View Code button */
+button.card-meta {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.2s;
+}
+
+button.card-meta:hover {
+    background-color: #0060df;
+}
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 4px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .tab.active {
+            border-bottom-color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+                border: 1px solid #e8e8e8;
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .card-meta {
+            font-size: 0.8rem;
+            color: var(--secondary);
+        }
+
+        /* Component Preview Styles */
+        .component-preview {
+            width: 100%;
+            height: 200px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Button Component Styles */
+        .btn {
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .btn-primary {
+            background-color: #0070f3;
+            color: white;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0060df;
+        }
+        .btn-secondary {
+            background-color: #f5f5f5;
+            border: 1px solid #eaeaea;
+        }
+
+        /* Card Component Styles */
+        .component-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 250px;
+        }
+        .component-card-image {
+            height: 80px;
+            background-color: #f0f0f0;
+        }
+        .component-card-content {
+            padding: 15px;
+        }
+        .component-card-content h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .component-card-content p {
+            margin: 0;
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* Toggle Switch Styles */
+        .toggle {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .toggle-slider {
+            background-color: #0070f3;
+        }
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Modal Styles */
+        .modal-preview {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .modal-preview .modal-content {
+            position: relative;
+            transform: scale(0.8);
+            transform-origin: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .modal-header h3 {
+            margin: 0;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .modal-body {
+            padding: 15px;
+        }
+        .modal-footer {
+            padding: 15px;
+            border-top: 1px solid #eaeaea;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        /* Navbar Styles */
+        .navbar-preview {
+            width: 100%;
+            transform: scale(0.9);
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .navbar-toggle {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: auto;
+        }
+        .navbar-toggle span {
+            width: 25px;
+            height: 2px;
+            background-color: black;
+            margin: 3px 0;
+            transition: all 0.3s;
+        }
+        .navbar-menu {
+            display: flex;
+            margin-left: auto;
+            gap: 20px;
+        }
+        .navbar-item {
+            text-decoration: none;
+            color: #333;
+            position: relative;
+        }
+        .navbar-item.active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #0070f3;
+        }
+
+        /* Tooltip Styles */
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 1;
+            visibility: visible;
+            margin-bottom: 5px;
+        }
+        .tooltip:after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+
+        /* Add this to your CSS styles */
+.copy-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.copy-icon:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.component-preview {
+    position: relative; /* Make sure this is set for absolute positioning of the icon */
+}
+
+@media (max-width: 1000px) {
+            
+
+            .search-bar {
+            flex: 1;
+            max-width: 260px;
+            position: relative;
+        }
+        }
+
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .search-bar {
+            flex: 1;
+            max-width: 100px;
+            position: relative;
+        }
+        }
+
+        /* Removed dark mode media query to ensure light theme always */
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="./uivolve-logo.png" alt="UIVolve Logo" style="width: 40px;">
+            </div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <a href="#" class="sidebar-nav-item active">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="3" y1="9" x2="21" y2="9"></line>
+                            <line x1="9" y1="21" x2="9" y2="9"></line>
+                        </svg>
+                        All Components
+                    </a>
+                    <a href="#" class="sidebar-nav-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                        Analytics
+                    </a>
+                </div>
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Collections</div>
+                    <a href="#" class="sidebar-nav-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        Buttons
+                    </a>
+                    <a href="#" class="sidebar-nav-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="3" y1="9" x2="21" y2="9"></line>
+                        </svg>
+                        Cards
+                    </a>
+                    <a href="#" class="sidebar-nav-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="4" y1="21" x2="4" y2="14"></line>
+                            <line x1="4" y1="10" x2="4" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12" y2="3"></line>
+                            <line x1="20" y1="21" x2="20" y2="16"></line>
+                            <line x1="20" y1="12" x2="20" y2="3"></line>
+                            <line x1="1" y1="14" x2="7" y2="14"></line>
+                            <line x1="9" y1="8" x2="15" y2="8"></line>
+                            <line x1="17" y1="16" x2="23" y2="16"></line>
+                        </svg>
+                        Forms
+                    </a>
+                    <a href="#" class="sidebar-nav-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        </svg>
+                        Navigation
+                    </a>
+                </div>
+                
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <button class="menu-toggle" id="menu-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search components...">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Export
+                    </button>
+                    <button class="header-btn primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Create
+                    </button>
+                </div>
+            </header>
+
+
+            
+
+            <div class="content">
+                <div style="max-width: 1200px; padding:40px 0px 50px 0px;">
+                    <h1 style="font-size: 45px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; background: linear-gradient(to right, #000, #555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Completely unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS.</h1>
+                    <p style="font-size: 16px; line-height: 1.6; color: #666; max-width: 940px; margin-top: 16px;">We are dedicated to empowering developers and designers by providing a comprehensive, modern, and trendy library of frontend UI code snippets and detailed documentation.</p>
+                  </div>
+
+                <div class="tabs">
+                    <div class="tab active">All</div>
+                    <div class="tab">Recent</div>
+                    <div class="tab">Popular</div>
+                </div>
+
+                
+                <div class="card-grid" id="card-grid">
+                    <!-- Cards will be dynamically generated -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Component Library Data Structure
+        const componentLibrary = {
+            // Each component has a unique ID, title, description, and HTML/CSS/JS code
+            components: [
+                {
+                    id: 'button-primary',
+                    title: 'Primary Button',
+                    view: 'View Code',
+                    category: 'Buttons',
+                    html: `<button class="btn btn-primary">Click Me</button>`,
+                    css: `.btn {
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.btn-primary {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #0060df;
+}`,
+                    js: ``,
+                    renderPreview: function() {
+                        return `<button class="btn btn-primary">Click Me</button>`;
+                    }
+                },
+                {
+                    id: 'card-basic',
+                    title: 'Basic Card',
+                    category: 'Cards',
+                    html: `<div class="component-card">
+  <div class="component-card-image"></div>
+  <div class="component-card-content">
+    <h3>Card Title</h3>
+    <p>This is a basic card component with an image and some text content.</p>
+  </div>
+</div>`,
+                    css: `.component-card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.component-card-image {
+  height: 150px;
+  background-color: #f0f0f0;
+}
+.component-card-content {
+  padding: 15px;
+}
+.component-card-content h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.component-card-content p {
+  margin: 0;
+  color: #666;
+}`,
+                    js: ``,
+                    renderPreview: function() {
+                        return `<div class="component-card">
+                            <div class="component-card-image"></div>
+                            <div class="component-card-content">
+                                <h3>Card Title</h3>
+                                <p>This is a basic card component with an image and some text content.</p>
+                            </div>
+                        </div>`;
+                    }
+                },
+                {
+                    id: 'toggle-switch',
+                    title: 'Toggle Switch',
+                    category: 'Forms',
+                    html: `<label class="toggle">
+  <input type="checkbox">
+  <span class="toggle-slider"></span>
+</label>`,
+                    css: `.toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+}
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+input:checked + .toggle-slider {
+  background-color: #0070f3;
+}
+input:checked + .toggle-slider:before {
+  transform: translateX(26px);
+}`,
+                    js: ``,
+                    renderPreview: function() {
+                        return `<label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>`;
+                    }
+                },
+                {
+                    id: 'modal-basic',
+                    title: 'Basic Modal',
+                    category: 'Overlays',
+                    html: `<button class="modal-trigger">Open Modal</button>
+<div class="modal" id="exampleModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Modal Title</h3>
+      <button class="modal-close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p>This is the modal content. You can put any HTML here.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary modal-close">Cancel</button>
+      <button class="btn btn-primary">Confirm</button>
+    </div>
+  </div>
+</div>`,
+                    css: `.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.modal.open {
+  display: flex;
+}
+.modal-content {
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eaeaea;
+}
+.modal-header h3 {
+  margin: 0;
+}
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.modal-body {
+  padding: 15px;
+}
+.modal-footer {
+  padding: 15px;
+  border-top: 1px solid #eaeaea;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-primary {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+}
+.btn-secondary {
+  background-color: #f5f5f5;
+  border: 1px solid #eaeaea;
+}`,
+                    js: `document.querySelector('.modal-trigger').addEventListener('click', function() {
+  document.getElementById('exampleModal').classList.add('open');
+});
+
+document.querySelectorAll('.modal-close').forEach(function(element) {
+  element.addEventListener('click', function() {
+    document.getElementById('exampleModal').classList.remove('open');
+  });
+});`,
+                    renderPreview: function() {
+                        return `<div class="modal-preview">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3>Modal Title</h3>
+                                    <button class="modal-close">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>This is the modal content. You can put any HTML here.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary">Cancel</button>
+                                    <button class="btn btn-primary">Confirm</button>
+                                </div>
+                            </div>
+                        </div>`;
+                    }
+                },
+                {
+                    id: 'navbar-responsive',
+                    title: 'Responsive Navbar',
+                    category: 'Navigation',
+                    html: `<nav class="navbar">
+  <div class="navbar-brand">Brand</div>
+  <button class="navbar-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="navbar-menu">
+    <a href="#" class="navbar-item active">Home</a>
+    <a href="#" class="navbar-item">Features</a>
+    <a href="#" class="navbar-item">Pricing</a>
+    <a href="#" class="navbar-item">About</a>
+  </div>
+</nav>`,
+                    css: `.navbar {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+}
+.navbar-toggle span {
+  width: 25px;
+  height: 2px;
+  background-color: black;
+  margin: 3px 0;
+  transition: all 0.3s;
+}
+.navbar-menu {
+  display: flex;
+  margin-left: auto;
+  gap: 20px;
+}
+.navbar-item {
+  text-decoration: none;
+  color: #333;
+  position: relative;
+}
+.navbar-item.active:after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #0070f3;
+}
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: flex;
+  }
+  .navbar-menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    gap: 15px;
+    transform: translateY(-150%);
+    transition: transform 0.3s;
+    z-index: 100;
+  }
+  .navbar-menu.open {
+    transform: translateY(0);
+  }
+}`,
+                    js: `document.querySelector('.navbar-toggle').addEventListener('click', function() {
+  document.querySelector('.navbar-menu').classList.toggle('open');
+  
+  // Animate the hamburger to X
+  const spans = this.querySelectorAll('span');
+  spans[0].style.transform = spans[0].style.transform === 'rotate(45deg) translate(5px, 5px)' ? 'none' : 'rotate(45deg) translate(5px, 5px)';
+  spans[1].style.opacity = spans[1].style.opacity === '0' ? '1' : '0';
+  spans[2].style.transform = spans[2].style.transform === 'rotate(-45deg) translate(7px, -6px)' ? 'none' : 'rotate(-45deg) translate(7px, -6px)';
+});`,
+                    renderPreview: function() {
+                        return `<div class="navbar-preview">
+                            <nav class="navbar">
+                                <div class="navbar-brand">Brand</div>
+                                <div class="navbar-menu">
+                                    <a href="#" class="navbar-item active">Home</a>
+                                    <a href="#" class="navbar-item">Features</a>
+                                    <a href="#" class="navbar-item">Pricing</a>
+                                    <a href="#" class="navbar-item">About</a>
+                                </div>
+                            </nav>
+                        </div>`;
+                    }
+                },
+                {
+                    id: 'tooltip',
+                    title: 'Tooltip',
+                    category: 'Overlays',
+                    html: `<div class="tooltip-container">
+  <button class="btn">Hover Me</button>
+  <div class="tooltip">This is a tooltip</div>
+</div>`,
+                    css: `.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+.btn {
+  padding: 10px 20px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  margin-bottom: 5px;
+}
+.tooltip:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+.tooltip-container:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}`,
+                    js: ``,
+                    renderPreview: function() {
+                        return `<div class="tooltip-container">
+                            <button class="btn btn-primary">Hover Me</button>
+                            <div class="tooltip">This is a tooltip</div>
+                        </div>`;
+                    }
+                }
+            ]
+        };
+
+        
+
+        // Function to render component cards
+function renderComponentCards() {
+    const cardGrid = document.getElementById('card-grid');
+    cardGrid.innerHTML = '';
+
+    componentLibrary.components.forEach(component => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        // Make sure each component has a view property
+componentLibrary.components.forEach(component => {
+    if (!component.view) {
+        component.view = 'View Code';
+    }
+});
+        
+        // Create the component preview instead of an image
+        const previewHtml = `
+            <div class="component-preview">
+                <div class="copy-icon" data-component-id="${component.id}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </div>
+                ${component.renderPreview()}
+            </div>
+            <div class="card-content">
+                <div class="card-title">${component.title}</div>
+                <div class="card-meta">${component.category}</div>
+                <button class="card-meta">${component.view}</button>
+                
+            </div>
+        `;
+        
+        card.innerHTML = previewHtml;
+
+        // Add click event to view component details
+        card.addEventListener('click', (e) => {
+            // Don't trigger the card click if clicking on the copy icon
+            if (!e.target.closest('.copy-icon')) {
+                viewComponentDetails(component);
+            }
+        });
+
+        cardGrid.appendChild(card);
+    });
+
+    // Add event listeners for copy icons
+    document.querySelectorAll('.copy-icon').forEach(icon => {
+        icon.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent card click
+            const componentId = icon.getAttribute('data-component-id');
+            const component = componentLibrary.components.find(c => c.id === componentId);
+            copyComponentCode(component);
+        });
+    });
+}
+
+// Add this function to copy component code
+function copyComponentCode(component) {
+    // Create a formatted string with HTML, CSS, and JS
+    const codeString = `/* ${component.title} - HTML */
+${component.html}
+
+/* ${component.title} - CSS */
+${component.css}
+
+/* ${component.title} - JavaScript */
+${component.js || '// No JavaScript for this component'}`;
+
+    // Copy to clipboard
+    navigator.clipboard.writeText(codeString)
+        .then(() => {
+            // Show a temporary success message
+            const tempMessage = document.createElement('div');
+            tempMessage.textContent = 'Code copied!';
+            tempMessage.style.position = 'fixed';
+            tempMessage.style.bottom = '20px';
+            tempMessage.style.right = '20px';
+            tempMessage.style.padding = '10px 15px';
+            tempMessage.style.backgroundColor = '#4CAF50';
+            tempMessage.style.color = 'white';
+            tempMessage.style.borderRadius = '4px';
+            tempMessage.style.zIndex = '9999';
+            document.body.appendChild(tempMessage);
+            
+            // Remove the message after 2 seconds
+            setTimeout(() => {
+                document.body.removeChild(tempMessage);
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Failed to copy code: ', err);
+            alert('Failed to copy code. Please try again.');
+        });
+}
+
+
+function copyCode(id) {
+    const component = componentLibrary.components.find(c => c.id === id);
+    const code = component.html + '\n\n' + component.css + '\n\n' + component.js;
+    navigator.clipboard.writeText(code);
+    alert('Code copied!');
+}
+
+        function renderComponentCards() {
+    const cardGrid = document.getElementById('card-grid');
+    cardGrid.innerHTML = '';
+
+    componentLibrary.components.forEach(component => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        // Make sure each component has a view property
+componentLibrary.components.forEach(component => {
+    if (!component.view) {
+        component.view = 'View Code';
+    }
+});
+        
+        card.innerHTML = `
+            <div class="component-preview">
+                <div class="copy-icon" onclick="copyCode('${component.id}')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </div>
+                ${component.renderPreview()}
+            </div>
+            <div class="card-content">
+                <div class="card-title">${component.title}</div>
+                <div class="card-meta">${component.category}</div>
+                <button class="card-meta" onclick="viewSourceCode('${component.id}')">${component.view || 'View Code'}</button>
+            </div>
+        `;
+
+        cardGrid.appendChild(card);
+    });
+}
+
+// Add this to your JavaScript section
+let currentComponent = null;
+
+function viewSourceCode(id) {
+    const component = componentLibrary.components.find(c => c.id === id);
+    if (!component) return;
+    
+    currentComponent = component;
+    
+    // Set the title
+    document.getElementById('code-overlay-title').textContent = `${component.title} Source Code`;
+    
+    // Show HTML by default
+    showCodeTab('html');
+    
+    // Show the overlay
+    const overlay = document.getElementById('code-overlay');
+    overlay.classList.add('active');
+    
+    // Prevent body scrolling
+    document.body.style.overflow = 'hidden';
+}
+
+function showCodeTab(tab) {
+    if (!currentComponent) return;
+    
+    const codeContent = document.getElementById('code-content');
+    let content = '';
+    
+    switch(tab) {
+        case 'html':
+            content = currentComponent.html;
+            break;
+        case 'css':
+            content = currentComponent.css;
+            break;
+        case 'js':
+            content = currentComponent.js || '// No JavaScript for this component';
+            break;
+    }
+    
+    codeContent.textContent = content;
+    
+    // Update active tab
+    document.querySelectorAll('.code-tab').forEach(t => {
+        t.classList.toggle('active', t.getAttribute('data-tab') === tab);
+    });
+}
+
+function closeCodeOverlay() {
+    const overlay = document.getElementById('code-overlay');
+    overlay.classList.remove('active');
+    
+    // Re-enable body scrolling
+    document.body.style.overflow = '';
+    
+    // Clear current component after animation completes
+    setTimeout(() => {
+        currentComponent = null;
+    }, 300);
+}
+
+// Set up event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    // Close button
+    document.getElementById('code-overlay-close').addEventListener('click', closeCodeOverlay);
+    
+    // Tab switching
+    document.querySelectorAll('.code-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            showCodeTab(this.getAttribute('data-tab'));
+        });
+    });
+    
+    // Close when clicking outside the content
+    document.getElementById('code-overlay').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeCodeOverlay();
+        }
+    });
+    
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && document.getElementById('code-overlay').classList.contains('active')) {
+            closeCodeOverlay();
+        }
+    });
+});
+
+
+
+        
+
+        // Toggle sidebar on mobile
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('open');
+        });
+
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // You could filter components by category here based on the tab
+                // For now, we'll just re-render all components
+                renderComponentCards();
+            });
+        });
+
+        // Initialize the component cards
+        renderComponentCards();
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.getElementById('menu-toggle');
+            
+            if (window.innerWidth <= 768 && 
+                sidebar.classList.contains('open') && 
+                !sidebar.contains(event.target) && 
+                event.target !== menuToggle) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Add component functionality
+        function addNewComponent(component) {
+            componentLibrary.components.push(component);
+            renderComponentCards();
+        }
+
+        // Example of how to add a new component programmatically
+        // Uncomment to test:
+        /*
+        addNewComponent({
+            id: 'accordion',
+            title: 'Accordion',
+            category: 'Interactive',
+            html: `<div class="accordion">
+  <div class="accordion-item">
+    <button class="accordion-header">Section 1</button>
+    <div class="accordion-content">
+      <p>Content for section 1</p>
+    </div>
+  </div>
+</div>`,
+            css: `.accordion-item {
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.accordion-header {
+  width: 100%;
+  text-align: left;
+  padding: 15px;
+  background: none;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+.accordion-content {
+  padding: 0 15px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s, padding 0.3s;
+}
+.accordion-item.active .accordion-content {
+  max-height: 200px;
+  padding: 15px;
+}`,
+            js: `document.querySelectorAll('.accordion-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const item = header.parentElement;
+    item.classList.toggle('active');
+  });
+});`,
+            renderPreview: function() {
+                return `<div class="accordion">
+                    <div class="accordion-item active">
+                        <button class="accordion-header">Section 1</button>
+                        <div class="accordion-content" style="max-height: 100px; padding: 15px;">
+                            <p>Content for section 1</p>
+                        </div>
+                    </div>
+                </div>`;
+            }
+        });
+        */
+
+        // Clear any existing event listeners and set a direct onclick handler
+const menuToggle = document.getElementById('menu-toggle');
+if (menuToggle) {
+    // Remove existing event listeners by cloning the element
+    const newMenuToggle = menuToggle.cloneNode(true);
+    menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
+    
+    // Add a direct onclick handler
+    newMenuToggle.onclick = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('open');
+        console.log('Menu toggled, sidebar open:', sidebar.classList.contains('open'));
+    };
+}
+
+// Make sure the initial render happens
+renderComponentCards();
+
+// Function to filter component cards based on search input
+function filterComponentCards(searchTerm) {
+    const cardGrid = document.getElementById('card-grid');
+    const cards = cardGrid.getElementsByClassName('card');
+    
+    Array.from(cards).forEach(card => {
+        const title = card.querySelector('.card-title').textContent.toLowerCase();
+        if (title.includes(searchTerm.toLowerCase())) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Add event listener to the search bar
+document.querySelector('.search-bar input').addEventListener('input', function() {
+    filterComponentCards(this.value);
+});
+    </script>
+
+    <!-- Add this right before the closing </body> tag -->
+<div class="code-overlay" id="code-overlay">
+    <div class="code-overlay-content">
+        <div class="code-overlay-header">
+            <h2 id="code-overlay-title">Component Source Code</h2>
+            <button class="code-overlay-close" id="code-overlay-close">&times;</button>
+        </div>
+        <div class="code-overlay-tabs">
+            <button class="code-tab active" data-tab="html">HTML</button>
+            <button class="code-tab" data-tab="css">CSS</button>
+            <button class="code-tab" data-tab="js">JavaScript</button>
+        </div>
+        <div class="code-overlay-body">
+            <pre id="code-content" class="code-content"></pre>
+        </div>
+    </div>
+</div>
+</body>
+</html>
