@@ -336,7 +336,7 @@ button.card-meta:hover {
         /* Card Grid */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
             gap: 20px;
         }
 
@@ -371,7 +371,7 @@ button.card-meta:hover {
         .component-preview {
             width: 100%;
             height: 200px;
-            background-color: white;
+            background-color: #EBEBEB;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -415,6 +415,7 @@ button.card-meta:hover {
         }
         .component-card-content {
             padding: 15px;
+            background-color: white;
         }
         .component-card-content h3 {
             margin-top: 0;
@@ -597,6 +598,144 @@ button.card-meta:hover {
             border-color: #333 transparent transparent transparent;
         }
 
+
+
+
+       .container {
+      width: 100%;
+      max-width: 240px;
+      position: relative;
+    }
+
+    /* Dropdown button styles */
+    .dropdown-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px 14px;
+      background-color: white;
+      border: 1px solid #eaeaea;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      outline: none;
+    }
+
+    .dropdown-button:hover {
+      background-color: #f9f9f9;
+    }
+
+    .dropdown-button:focus {
+      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Chevron icon */
+    .chevron {
+      width: 16px;
+      height: 16px;
+      margin-left: 8px;
+      transition: transform 0.2s ease-out;
+    }
+
+    .dropdown-button.active .chevron {
+      transform: rotate(180deg);
+    }
+
+    /* Dropdown menu */
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      width: 100%;
+      background-color: white;
+      border: 1px solid #eaeaea;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      opacity: 0;
+      transform: scale(0.95) translateY(-10px);
+      transform-origin: top center;
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 10;
+    }
+
+    .dropdown-menu.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+    }
+
+    /* Dropdown items */
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 14px;
+      font-size: 14px;
+      color: #333;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f5f5f5;
+    }
+
+    .dropdown-item svg {
+      width: 16px;
+      height: 16px;
+      margin-right: 10px;
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background-color: #eaeaea;
+      margin: 4px 0;
+    }
+
+    .dropdown-item.danger {
+      color: #e00;
+    }
+
+    .dropdown-item.danger:hover {
+      background-color: #fff0f0;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        .label {
+      display: inline-block;
+      padding: 0.35em 0.65em;
+      font-size: 0.75rem;
+      font-weight: 500;
+      line-height: 1;
+      color: #3b82f6;
+      background-color: #eff6ff;
+      border-radius: 0.25rem;
+      border: 1px solid #dbeafe;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s ease;
+      margin-bottom: 15px;
+    }
+    
+    .label:hover {
+      background-color: #dbeafe;
+    }
+
         /* Add this to your CSS styles */
 .copy-icon {
     position: absolute;
@@ -619,7 +758,45 @@ button.card-meta:hover {
 
 .component-preview {
     position: relative; /* Make sure this is set for absolute positioning of the icon */
+    
 }
+
+.segmented-control {
+      display: flex;
+      background-color: #f3f3f3;
+      border-radius: 30px;
+      padding: 4px;
+      width: 400px;
+      position: relative;
+    }
+
+    .segment {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      cursor: pointer;
+      z-index: 1;
+      transition: color 0.3s ease;
+      font-size: 14px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    .segment.active {
+      color: #000;
+    }
+
+    .slider {
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      bottom: 4px;
+      width: calc(33.333% - 8px);
+      background-color: white;
+      border-radius: 26px;
+      transition: transform 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
 
 @media (max-width: 1000px) {
             
@@ -660,6 +837,851 @@ button.card-meta:hover {
             position: relative;
         }
         }
+
+        /* Floating Button and Slider Menu Styles */
+.floating-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    z-index: 1500;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.floating-button:hover {
+    background-color: #0060df;
+    transform: translateY(-3px);
+}
+
+.floating-button svg {
+    width: 24px;
+    height: 24px;
+    color: white;
+    transition: transform 0.3s;
+}
+
+.floating-button.active svg {
+    transform: rotate(45deg);
+}
+
+.slider-menu {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 320px;
+    height: 100vh;
+    background-color: var(--background);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1400;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: auto;
+}
+
+.slider-menu.active {
+    right: 0;
+}
+
+.slider-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slider-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.slider-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--primary);
+}
+
+.slider-content {
+    padding: 20px;
+}
+
+.slider-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.slider-menu-item:hover {
+    background-color: var(--card-bg);
+}
+
+.slider-menu-item svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    color: var(--secondary);
+}
+
+.slider-menu-item-text {
+    font-weight: 500;
+}
+
+.slider-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1300;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.slider-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.editor-wrapper {
+            display: flex;
+            gap: 2rem;
+            min-height: 100vh;
+        }
+
+        .preview-area {
+            flex: 1;
+            background-color: var(--background-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            position: relative;
+        }
+
+        .slider-content {
+            width: 100%;
+            min-height: 300px;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: var(--font-family);
+        }
+
+        .slider-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .slider-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .slider-content .btn {
+            display: inline-block;
+            background-color: var(--button-color);
+            color: var(--button-text-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .slider-content .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .slider-content .logo {
+            max-width: 150px;
+            margin-bottom: 1.5rem;
+        }
+
+        
+/* Editor Panel */
+.editor-panel h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.editor-section {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.editor-section:last-child {
+  border-bottom: none;
+}
+
+.editor-section h4 {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+  margin: 0 0 1rem 0;
+}
+
+.control-group {
+  margin-bottom: 1rem;
+}
+
+.control-group label {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* Form Controls */
+select, input[type="url"], input[type="color"] {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--input);
+  font-family: inherit;
+  font-size: 0.875rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+select:focus, input[type="url"]:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
+}
+
+input[type="color"] {
+  height: 40px;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+/* Logo Preview */
+.logo-preview {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background-color: var(--input);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+}
+
+.badge-examples {
+  display: flex;
+  gap: 24px;
+}
+.badge-container {
+  position: relative;
+  display: inline-block;
+}
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid #eaeaea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.btn-icon:hover {
+  background-color: #f5f5f5;
+}
+.btn-icon svg {
+  width: 20px;
+  height: 20px;
+  color: #333;
+}
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: #ff4d4f;
+  color: white;
+  border-radius: 10px;
+  padding: 0 6px;
+  height: 20px;
+  min-width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(255, 77, 79, 0.3);
+  animation: pulse 2s infinite;
+}
+.badge.dot {
+  width: 10px;
+  height: 10px;
+  min-width: auto;
+  border-radius: 50%;
+  padding: 0;
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 77, 79, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(255, 77, 79, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 77, 79, 0);
+  }
+}
+
+.search-wrapper {
+  position: relative;
+  width: 280px;
+  transition: width 0.3s ease;
+}
+.search-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 44px 0 16px;
+  border-radius: 22px;
+  border: 1px solid #eaeaea;
+  background-color: white;
+  font-size: 14px;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  outline: none;
+}
+.search-input:focus {
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1);
+  border-color: #0070f3;
+}
+.search-button {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.search-input:focus + .search-button {
+  background-color: #0070f3;
+  color: white;
+}
+.search-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+.toast {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 6px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 320px;
+  animation: slideIn 0.3s ease-out, fadeOut 0.5s ease-in 2.5s forwards;
+}
+.toast.success {
+  border-left: 4px solid #10b981;
+}
+.toast.error {
+  border-left: 4px solid #ef4444;
+}
+.toast.warning {
+  border-left: 4px solid #f59e0b;
+}
+.toast.info {
+  border-left: 4px solid #3b82f6;
+}
+.toast-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
+.toast.success .toast-icon {
+  color: #10b981;
+}
+.toast.error .toast-icon {
+  color: #ef4444;
+}
+.toast.warning .toast-icon {
+  color: #f59e0b;
+}
+.toast.info .toast-icon {
+  color: #3b82f6;
+}
+.toast-content {
+  flex: 1;
+}
+.toast-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.toast-message {
+  font-size: 14px;
+  color: #666;
+}
+.toast-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #999;
+  margin-left: 12px;
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.skeleton-card {
+  width: 300px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.skeleton-image {
+  height: 150px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+.skeleton-content {
+  padding: 16px;
+}
+.skeleton-title {
+  height: 24px;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+.skeleton-text {
+  height: 14px;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+.skeleton-text.short {
+  width: 70%;
+}
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.avatar-stack {
+  display: flex;
+  align-items: center;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid white;
+  margin-right: -10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+.avatar:hover {
+  
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.avatar.more {
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+}
+
+.label-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 500px;
+}
+
+.modern-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  border-radius: 16px;
+  background-color: #f3f4f6;
+  color: #6b7280;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.modern-label:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modern-label.primary {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border-color: #bae6fd;
+}
+
+.modern-label.success {
+  background-color: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+.modern-label.warning {
+  background-color: #fef3c7;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+.modern-label.danger {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+.modern-label.info {
+  background-color: #dbeafe;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+.modern-label.gradient {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  color: white;
+}
+
+.modern-label.outlined {
+  background-color: transparent;
+  border: 1px solid #d1d5db;
+  color: #4b5563;
+}
+
+.modern-label.with-dot .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10b981;
+  display: inline-block;
+}
+
+.modern-label.with-icon {
+  padding-left: 8px;
+}
+
+.modern-label.with-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+}
+
+/* Add a pulse animation for a dot */
+.modern-label.with-dot .dot {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+/* Unique prefix for all classes to avoid conflicts */
+.v0-custom-button {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .v0-custom-button:hover {
+            background-color: #111111;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .v0-custom-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .v0-custom-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%, -50%);
+            transform-origin: 50% 50%;
+        }
+
+        .v0-custom-button:focus:not(:active)::after {
+            animation: v0-custom-ripple 0.6s ease-out;
+        }
+
+        @keyframes v0-custom-ripple {
+            0% {
+                transform: scale(0, 0) translate(-50%, -50%);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20) translate(-50%, -50%);
+                opacity: 0;
+            }
+        }
+
+        .v0-custom-toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .v0-custom-toast {
+            background-color: #ffffff;
+            color: #000000;
+            border-radius: 8px;
+            padding: 12px 16px;
+            min-width: 280px;
+            max-width: 320px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            pointer-events: auto;
+            transform: translateY(16px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .v0-custom-toast.v0-custom-show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .v0-custom-toast-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .v0-custom-toast-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v0-custom-toast-message {
+            font-weight: 400;
+        }
+
+        .v0-custom-toast-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            padding: 4px;
+            margin-left: 8px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .v0-custom-toast-close:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .v0-custom-toast {
+                background-color: #1a1a1a;
+                color: #ffffff;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .v0-custom-toast-close:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        @keyframes v0-custom-progress {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+
+        .v0-custom-toast-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background-color: #0070f3;
+            border-radius: 0 0 0 8px;
+            animation: v0-custom-progress 3s linear forwards;
+        }
+
+            .container-input {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    /* Floating Label Input - Using BEM naming convention */
+    .float-field {
+      position: relative;
+      margin-bottom: 1.75rem;
+    }
+
+    .float-field__input {
+      display: block;
+      width: 100%;
+      height: 60px;
+      padding: 1.25rem 1rem 0.5rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--text-primary);
+      background-color: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .float-field__input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+      background-color: var(--input-focus);
+    }
+
+    .float-field__input::placeholder {
+      color: transparent;
+    }
+
+    .float-field__label {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      pointer-events: none;
+      transition: 0.2s ease all;
+    }
+
+    .float-field__input:focus ~ .float-field__label,
+    .float-field__input:not(:placeholder-shown) ~ .float-field__label {
+      top: 0.5rem;
+      left: 1rem;
+      font-size: 0.7rem;
+      color: var(--primary);
+      opacity: 0.9;
+    }
+
+
+
+
+
 
         /* Removed dark mode media query to ensure light theme always */
     </style>
@@ -773,6 +1795,7 @@ button.card-meta:hover {
 
             <div class="content">
                 <div style="max-width: 1200px; padding:40px 0px 50px 0px;">
+                    <span class="label">New</span>
                     <h1 style="font-size: 45px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; background: linear-gradient(to right, #000, #555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Completely unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS.</h1>
                     <p style="font-size: 16px; line-height: 1.6; color: #666; max-width: 940px; margin-top: 16px;">We are dedicated to empowering developers and designers by providing a comprehensive, modern, and trendy library of frontend UI code snippets and detailed documentation.</p>
                   </div>
@@ -790,6 +1813,78 @@ button.card-meta:hover {
             </div>
         </main>
     </div>
+
+    <!-- Floating Button -->
+<div class="floating-button" id="floating-button">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+</div>
+
+<!-- Slider Menu -->
+<div class="slider-menu" id="slider-menu">
+    <div class="slider-header">
+        <h2>Quick Menu</h2>
+        <button class="slider-close" id="slider-close">&times;</button>
+    </div>
+    <div class="slider-content">
+       
+    
+
+    <div class="editor-panel">
+        <h3>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+            </svg>
+            Editor
+        </h3>
+
+        <div class="editor-section">
+            <h4>Typography</h4>
+            <div class="control-group">
+                <label for="font-family">Font Family</label>
+                <select id="font-family" onchange="updateCardFonts(this.value)">
+                    <option value="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">Inter (Default)</option>
+                    <option value="'Arial', sans-serif">Arial</option>
+                    <option value="'Helvetica', sans-serif">Helvetica</option>
+                    <option value="'Georgia', serif">Georgia</option>
+                    <option value="'Roboto', sans-serif">Roboto</option>
+                    <option value="'Montserrat', sans-serif">Montserrat</option>
+                    <option value="'Open Sans', sans-serif">Open Sans</option>
+                </select>
+            </div>
+            
+        </div>
+
+        <div class="editor-section">
+            <h4>Buttons</h4>
+            <div class="control-group">
+                <label for="button-color">Primary Color</label>
+                <input type="color" id="button-color" value="#0070f3" onchange="updatePrimaryColor(this.value)">
+            </div>
+            
+        </div>
+
+        <div class="editor-section">
+            <h4>Logo</h4>
+            <div class="control-group">
+                <label for="logo-url">Logo URL</label>
+                <input type="url" id="logo-url" placeholder="Enter image URL" onchange="updateLogo(this.value)">
+            </div>
+            <div class="logo-preview" id="logo-preview"></div>
+        </div>
+
+        
+        
+        
+    </div>
+    </div>
+</div>
+
+<!-- Overlay for closing the menu when clicking outside -->
+<div class="slider-overlay" id="slider-overlay"></div>
 
     <script>
         // Component Library Data Structure
@@ -844,6 +1939,7 @@ button.card-meta:hover {
 }
 .component-card-content {
   padding: 15px;
+  background-color: white;
 }
 .component-card-content h3 {
   margin-top: 0;
@@ -1029,6 +2125,97 @@ document.querySelectorAll('.modal-close').forEach(function(element) {
                         </div>`;
                     }
                 },
+
+
+
+
+
+
+
+                {
+                    id: 'navbar-responsive',
+                    title: 'Tab',
+                    category: 'Navigation',
+                    html: `<div class="segmented-control">
+    <div class="segment active" data-index="0">Top Locations</div>
+    <div class="segment" data-index="1">Age Range</div>
+    <div class="segment" data-index="2">Gender</div>
+    <div class="slider"></div>
+  </div>`,
+                    css: `.segmented-control {
+      display: flex;
+      background-color: #e9e9ef;
+      border-radius: 30px;
+      padding: 4px;
+      width: 400px;
+      position: relative;
+    }
+
+    .segment {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      cursor: pointer;
+      z-index: 1;
+      transition: color 0.3s ease;
+      font-size: 14px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    .segment.active {
+      color: #000;
+    }
+
+    .slider {
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      bottom: 4px;
+      width: calc(33.333% - 8px);
+      background-color: white;
+      border-radius: 26px;
+      transition: transform 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }`,
+                    js: `document.addEventListener('DOMContentLoaded', () => {
+      const segments = document.querySelectorAll('.segment');
+      const slider = document.querySelector('.slider');
+
+      segments.forEach(segment => {
+        segment.addEventListener('click', () => {
+          // Remove active class from all segments
+          segments.forEach(s => s.classList.remove('active'));
+          
+          // Add active class to clicked segment
+          segment.classList.add('active');
+          
+          // Move slider
+          const index = parseInt(segment.dataset.index);
+          slider.style.transform = "translateX(" + index * 100 + "%)";
+        });
+      });
+    });`,
+                    renderPreview: function() {
+                        return `<div class="segmented-control">
+    <div class="segment active" data-index="0">Top Locations</div>
+    <div class="segment" data-index="1">Age Range</div>
+    <div class="segment" data-index="2">Gender</div>
+    <div class="slider"></div>
+  </div>`;
+                    }
+                },
+
+
+
+
+
+
+
+
+
+
+
                 {
                     id: 'navbar-responsive',
                     title: 'Responsive Navbar',
@@ -1137,6 +2324,472 @@ document.querySelectorAll('.modal-close').forEach(function(element) {
                         </div>`;
                     }
                 },
+
+
+
+                {
+                    id: 'modal-basic',
+                    title: 'Basic Modalc',
+                    category: 'Overlays',
+                    html: `<div class="container">
+    <button class="dropdown-button" aria-haspopup="true" aria-expanded="false">
+      <span>Options</span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+    
+    <div class="dropdown-menu">
+      <div class="dropdown-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span>Account</span>
+      </div>
+      <div class="dropdown-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        <span>Settings</span>
+      </div>
+      <div class="dropdown-divider"></div>
+      <div class="dropdown-item danger">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        <span>Logout</span>
+      </div>
+    </div>
+  </div>`,
+                    css: `.container {
+      width: 100%;
+      max-width: 240px;
+      position: relative;
+    }
+
+    /* Dropdown button styles */
+    .dropdown-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px 14px;
+      background-color: white;
+      border: 1px solid #eaeaea;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      outline: none;
+    }
+
+    .dropdown-button:hover {
+      background-color: #f9f9f9;
+    }
+
+    .dropdown-button:focus {
+      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Chevron icon */
+    .chevron {
+      width: 16px;
+      height: 16px;
+      margin-left: 8px;
+      transition: transform 0.2s ease-out;
+    }
+
+    .dropdown-button.active .chevron {
+      transform: rotate(180deg);
+    }
+
+    /* Dropdown menu */
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      width: 100%;
+      background-color: white;
+      border: 1px solid #eaeaea;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      opacity: 0;
+      transform: scale(0.95) translateY(-10px);
+      transform-origin: top center;
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 10;
+    }
+
+    .dropdown-menu.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+    }
+
+    /* Dropdown items */
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 14px;
+      font-size: 14px;
+      color: #333;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f5f5f5;
+    }
+
+    .dropdown-item svg {
+      width: 16px;
+      height: 16px;
+      margin-right: 10px;
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background-color: #eaeaea;
+      margin: 4px 0;
+    }
+
+    .dropdown-item.danger {
+      color: #e00;
+    }
+
+    .dropdown-item.danger:hover {
+      background-color: #fff0f0;
+    }`,
+                    js: `document.addEventListener('DOMContentLoaded', function() {
+      const dropdownButton = document.querySelector('.dropdown-button');
+      const dropdownMenu = document.querySelector('.dropdown-menu');
+      
+      // Toggle dropdown when button is clicked
+      dropdownButton.addEventListener('click', function() {
+        const isOpen = dropdownButton.classList.toggle('active');
+        dropdownMenu.classList.toggle('active');
+        dropdownButton.setAttribute('aria-expanded', isOpen);
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+          dropdownButton.classList.remove('active');
+          dropdownMenu.classList.remove('active');
+          dropdownButton.setAttribute('aria-expanded', 'false');
+        }
+      });
+      
+      // Prevent clicks inside dropdown from closing it
+      dropdownMenu.addEventListener('click', function(event) {
+        event.stopPropagation();
+      });
+      
+      // Add keyboard navigation
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && dropdownMenu.classList.contains('active')) {
+          dropdownButton.classList.remove('active');
+          dropdownMenu.classList.remove('active');
+          dropdownButton.setAttribute('aria-expanded', 'false');
+          dropdownButton.focus();
+        }
+      });
+    });`,
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+                    renderPreview: function() {
+                        return `<div class="container">
+    <button class="dropdown-button" aria-haspopup="true" aria-expanded="false">
+      <span>Options</span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+    
+    <div class="dropdown-menu">
+      <div class="dropdown-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span>Account</span>
+      </div>
+      <div class="dropdown-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        <span>Settings</span>
+      </div>
+      <div class="dropdown-divider"></div>
+      <div class="dropdown-item danger">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        <span>Logout</span>
+      </div>
+    </div>
+  </div>`;
+                    }
+                },
+
+
+
+
+
+
+
+
+                {
+                    id: 'modal-basic',
+                    title: 'Basic Modalcc',
+                    category: 'Overlays',
+                    html: `<!-- No body tag as requested -->
+    <!-- Button HTML -->
+    <button class="v0-custom-button">Click Me</button>
+    
+    <!-- Toast Container HTML -->
+    <div class="v0-custom-toast-container">
+        <!-- Toast notifications will be added here dynamically -->
+    </div>`,
+                    css: `
+                    
+                            /* Unique prefix for all classes to avoid conflicts */
+        .v0-custom-button {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .v0-custom-button:hover {
+            background-color: #111111;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .v0-custom-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .v0-custom-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%, -50%);
+            transform-origin: 50% 50%;
+        }
+
+        .v0-custom-button:focus:not(:active)::after {
+            animation: v0-custom-ripple 0.6s ease-out;
+        }
+
+        @keyframes v0-custom-ripple {
+            0% {
+                transform: scale(0, 0) translate(-50%, -50%);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20) translate(-50%, -50%);
+                opacity: 0;
+            }
+        }
+
+        .v0-custom-toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .v0-custom-toast {
+            background-color: #ffffff;
+            color: #000000;
+            border-radius: 8px;
+            padding: 12px 16px;
+            min-width: 280px;
+            max-width: 320px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            pointer-events: auto;
+            transform: translateY(16px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .v0-custom-toast.v0-custom-show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .v0-custom-toast-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .v0-custom-toast-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .v0-custom-toast-message {
+            font-weight: 400;
+        }
+
+        .v0-custom-toast-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            padding: 4px;
+            margin-left: 8px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .v0-custom-toast-close:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .v0-custom-toast {
+                background-color: #1a1a1a;
+                color: #ffffff;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .v0-custom-toast-close:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        @keyframes v0-custom-progress {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+
+        .v0-custom-toast-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background-color: #0070f3;
+            border-radius: 0 0 0 8px;
+            animation: v0-custom-progress 3s linear forwards;
+        }
+                    
+                    
+                    `,
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+                    renderPreview: function() {
+                        return `<!-- No body tag as requested -->
+    <!-- Button HTML -->
+    <button class="v0-custom-button">Click Me</button>
+    
+    <!-- Toast Container HTML -->
+    <div class="v0-custom-toast-container">
+        <!-- Toast notifications will be added here dynamically -->
+    </div>`;
+                    }
+                },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
                 {
                     id: 'tooltip',
                     title: 'Tooltip',
@@ -1193,6 +2846,639 @@ document.querySelectorAll('.modal-close').forEach(function(element) {
                             <button class="btn btn-primary">Hover Me</button>
                             <div class="tooltip">This is a tooltip</div>
                         </div>`;
+                    }
+                },
+
+                {
+                    id: 'avatar-stack',
+                    title: 'Avatar Stack',
+                    category: 'Data Display',
+                    html: `<div class="avatar-stack">
+  <div class="avatar" title="Alex Johnson">
+    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alex Johnson">
+  </div>
+  <div class="avatar" title="Maria Garcia">
+    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria Garcia">
+  </div>
+  <div class="avatar" title="James Wilson">
+    <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="James Wilson">
+  </div>
+  <div class="avatar" title="Sarah Chen">
+    <img src="https://randomuser.me/api/portraits/women/17.jpg" alt="Sarah Chen">
+  </div>
+  <div class="avatar more" title="12 more users">
+    <span>+12</span>
+  </div>
+</div>`,
+                    css: `.avatar-stack {
+  display: flex;
+  align-items: center;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid white;
+  margin-right: -10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+.avatar:hover {
+  transform: translateY(-4px);
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.avatar.more {
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+}`,
+                    js: ``,
+                    renderPreview: function() {
+                        return `<div class="avatar-stack">
+                            <div class="avatar" title="Alex Johnson">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alex Johnson">
+                            </div>
+                            <div class="avatar" title="Maria Garcia">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria Garcia">
+                            </div>
+                            <div class="avatar" title="James Wilson">
+                                <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="James Wilson">
+                            </div>
+                            <div class="avatar" title="Sarah Chen">
+                                <img src="https://randomuser.me/api/portraits/women/17.jpg" alt="Sarah Chen">
+                            </div>
+                            <div class="avatar more" title="12 more users">
+                                <span>+12</span>
+                            </div>
+                        </div>`;
+                    }
+                },
+                
+                {
+                    id: 'skeleton-loader',
+                    title: 'Skeleton Loader',
+                    category: 'Feedback',
+                    html: `<div class="skeleton-card">
+  <div class="skeleton-image"></div>
+  <div class="skeleton-content">
+    <div class="skeleton-title"></div>
+    <div class="skeleton-text"></div>
+    <div class="skeleton-text"></div>
+    <div class="skeleton-text short"></div>
+  </div>
+</div>`,
+                    css: `.skeleton-card {
+  width: 300px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.skeleton-image {
+  height: 150px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+.skeleton-content {
+  padding: 16px;
+}
+.skeleton-title {
+  height: 24px;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+.skeleton-text {
+  height: 14px;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+.skeleton-text.short {
+  width: 70%;
+}
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}`,
+                    js: ``,
+                    renderPreview: function() {
+                        return `<div class="skeleton-card">
+                            <div class="skeleton-image"></div>
+                            <div class="skeleton-content">
+                                <div class="skeleton-title"></div>
+                                <div class="skeleton-text"></div>
+                                <div class="skeleton-text"></div>
+                                <div class="skeleton-text short"></div>
+                            </div>
+                        </div>`;
+                    }
+                },
+                
+                
+                
+                {
+                    id: 'badge-notification',
+                    title: 'Badge Notification',
+                    category: 'Data Display',
+                    html: `<div class="badge-examples">
+  <div class="badge-container">
+    <button class="btn-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+      </svg>
+    </button>
+    <span class="badge">3</span>
+  </div>
+  
+  <div class="badge-container">
+    <button class="btn-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+    </button>
+    <span class="badge dot"></span>
+  </div>
+</div>`,
+                    css: `.badge-examples {
+  display: flex;
+  gap: 24px;
+}
+.badge-container {
+  position: relative;
+  display: inline-block;
+}
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid #eaeaea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.btn-icon:hover {
+  background-color: #f5f5f5;
+}
+.btn-icon svg {
+  width: 20px;
+  height: 20px;
+  color: #333;
+}
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: #ff4d4f;
+  color: white;
+  border-radius: 10px;
+  padding: 0 6px;
+  height: 20px;
+  min-width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(255, 77, 79, 0.3);
+  animation: pulse 2s infinite;
+}
+.badge.dot {
+  width: 10px;
+  height: 10px;
+  min-width: auto;
+  border-radius: 50%;
+  padding: 0;
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 77, 79, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(255, 77, 79, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 77, 79, 0);
+  }
+}`,
+                    js: ``,
+                    renderPreview: function() {
+                        return `<div class="badge-examples">
+                            <div class="badge-container">
+                                <button class="btn-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                    </svg>
+                                </button>
+                                <span class="badge">3</span>
+                            </div>
+                            
+                            <div class="badge-container">
+                                <button class="btn-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                </button>
+                                <span class="badge dot"></span>
+                            </div>
+                        </div>`;
+                    }
+                },
+                
+                {
+                    id: 'modern-search',
+                    title: 'Modern Search Bar',
+                    category: 'Forms',
+                    html: `<div class="search-wrapper">
+  <input type="text" class="search-input" placeholder="Search..." />
+  <button class="search-button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+  </button>
+</div>`,
+                    css: `.search-wrapper {
+  position: relative;
+  width: 280px;
+  transition: width 0.3s ease;
+}
+.search-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 44px 0 16px;
+  border-radius: 22px;
+  border: 1px solid #eaeaea;
+  background-color: white;
+  font-size: 14px;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  outline: none;
+}
+.search-input:focus {
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1);
+  border-color: #0070f3;
+}
+.search-button {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.search-input:focus + .search-button {
+  background-color: #0070f3;
+  color: white;
+}
+.search-button svg {
+  width: 18px;
+  height: 18px;
+}`,
+                    js: `const searchInput = document.querySelector('.search-input');
+const searchWrapper = document.querySelector('.search-wrapper');
+
+searchInput.addEventListener('focus', () => {
+  searchWrapper.style.width = '320px';
+});
+
+searchInput.addEventListener('blur', () => {
+  if (searchInput.value === '') {
+    searchWrapper.style.width = '280px';
+  }
+});`,
+                    renderPreview: function() {
+                        return `<div class="search-wrapper">
+                            <input type="text" class="search-input" placeholder="Search..." />
+                            <button class="search-button">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </button>
+                        </div>`;
+                    }
+                },
+                
+                {
+                    id: 'stepper',
+                    title: 'Progress Stepper',
+                    category: 'Navigation',
+                    html: ` <div class="container-input">
+    <!-- Floating Label Text Input with unique classes -->
+    <div class="float-field">
+      <input type="text" id="name" class="float-field__input" placeholder=" " required>
+      <label for="name" class="float-field__label">Full Name</label>
+    </div>
+  </div>`,
+                    css: `.stepper {
+  display: flex;
+  max-width: 800px;
+  overflow-x: auto;
+}
+.step {
+  display: flex;
+  flex: 1;
+  position: relative;
+  padding: 20px 0;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+.step.active {
+  opacity: 1;
+}
+.step:not(:last-child):after {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: calc(50% + 20px);
+  width: calc(100% - 40px);
+  height: 2px;
+  background-color: #e0e0e0;
+  z-index: 0;
+}
+.step.completed:not(:last-child):after {
+  background-color: #0070f3;
+}
+.step-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 20px;
+  z-index: 1;
+}
+.step-icon, .step-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.step.active .step-icon, .step.active .step-number {
+  border-color: #0070f3;
+  box-shadow: 0 0 0 4px rgba(0, 112, 243, 0.1);
+}
+.step.completed .step-icon {
+  background-color: #0070f3;
+  border-color: #0070f3;
+  color: white;
+}
+.step-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: white;
+}
+.step-content {
+  display: flex;
+  flex-direction: column;
+}
+.step-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.step-description {
+  font-size: 12px;
+  color: #777;
+}`,
+                    js: `document.addEventListener('DOMContentLoaded', () => {
+  const steps = document.querySelectorAll('.step');
+  
+  steps.forEach((step, index) => {
+    step.addEventListener('click', () => {
+      // First, mark all previous steps as completed
+      for (let i = 0; i < index; i++) {
+        steps[i].classList.add('completed');
+        steps[i].classList.add('active');
+        
+        // Change number to checkmark for completed steps
+        const number = steps[i].querySelector('.step-number');
+        if (number) {
+          const stepIndicator = steps[i].querySelector('.step-indicator');
+          stepIndicator.innerHTML = \`
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+          \`;
+        }
+      }
+      
+      // Set current step as active (not completed yet)
+      steps[index].classList.add('active');
+      steps[index].classList.remove('completed');
+      
+      // Remove active class from all following steps
+      for (let i = index + 1; i < steps.length; i++) {
+        steps[i].classList.remove('active', 'completed');
+        
+        // Reset to number for future steps
+        const icon = steps[i].querySelector('.step-icon');
+        if (icon) {
+          const stepIndicator = steps[i].querySelector('.step-indicator');
+          const stepNumber = i + 1;
+          stepIndicator.innerHTML = \`
+            <div class="step-number">\${stepNumber}</div>
+          \`;
+        }
+      }
+    });
+  });
+});`,
+                    renderPreview: function() {
+                        return ` <div class="container-input">
+    <!-- Floating Label Text Input with unique classes -->
+    <div class="float-field">
+      <input type="text" id="name" class="float-field__input" placeholder=" " required>
+      <label for="name" class="float-field__label">Full Name</label>
+    </div>
+  </div>`;
+                    }
+                },
+                {
+                    id: 'modern-labels',
+                    title: 'Modern Labels',
+                    category: 'Data Display',
+                    html: `<div class="label-container">
+  <span class="modern-label">Default</span>
+  <span class="modern-label primary">Primary</span>
+  <span class="modern-label success">Success</span>
+  <span class="modern-label warning">Warning</span>
+  <span class="modern-label danger">Danger</span>
+  <span class="modern-label info">Information</span>
+  <span class="modern-label gradient">Gradient</span>
+  <span class="modern-label outlined">Outlined</span>
+  <span class="modern-label with-dot"><span class="dot"></span>With Dot</span>
+  <span class="modern-label with-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/>
+      <path d="M12 16v-4"/>
+      <path d="M12 8h.01"/>
+    </svg>
+    With Icon
+  </span>
+</div>`,
+                    css: `.label-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 500px;
+}
+
+.modern-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  border-radius: 16px;
+  background-color: #f3f4f6;
+  color: #6b7280;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.modern-label:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modern-label.primary {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border-color: #bae6fd;
+}
+
+.modern-label.success {
+  background-color: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+.modern-label.warning {
+  background-color: #fef3c7;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+.modern-label.danger {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+.modern-label.info {
+  background-color: #dbeafe;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+.modern-label.gradient {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  color: white;
+}
+
+.modern-label.outlined {
+  background-color: transparent;
+  border: 1px solid #d1d5db;
+  color: #4b5563;
+}
+
+.modern-label.with-dot .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10b981;
+  display: inline-block;
+}
+
+.modern-label.with-icon {
+  padding-left: 8px;
+}
+
+.modern-label.with-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+}
+
+/* Add a pulse animation for a dot */
+.modern-label.with-dot .dot {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}`,
+                    js: ``,
+                    renderPreview: function() {
+                        return `<div class="label-container">
+  <span class="modern-label">Default</span>
+  <span class="modern-label primary">Primary</span>
+  <span class="modern-label success">Success</span>
+  <span class="modern-label warning">Warning</span>
+  <span class="modern-label danger">Danger</span>
+  <span class="modern-label info">Information</span>
+  <span class="modern-label gradient">Gradient</span>
+  <span class="modern-label outlined">Outlined</span>
+  <span class="modern-label with-dot"><span class="dot"></span>With Dot</span>
+  <span class="modern-label with-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/>
+      <path d="M12 16v-4"/>
+      <path d="M12 8h.01"/>
+    </svg>
+    With Icon
+  </span>
+</div>`;
                     }
                 }
             ]
@@ -1297,6 +3583,75 @@ ${component.js || '// No JavaScript for this component'}`;
             alert('Failed to copy code. Please try again.');
         });
 }
+
+// Get DOM elements
+const floatingButton = document.getElementById('floating-button');
+const sliderMenu = document.getElementById('slider-menu');
+const sliderClose = document.getElementById('slider-close');
+const sliderOverlay = document.getElementById('slider-overlay');
+
+// Toggle menu when floating button is clicked
+floatingButton.addEventListener('click', function() {
+    toggleMenu();
+});
+
+// Close menu when close button is clicked
+sliderClose.addEventListener('click', function() {
+    closeMenu();
+});
+
+// Close menu when overlay is clicked
+sliderOverlay.addEventListener('click', function() {
+    closeMenu();
+});
+
+// Close menu when ESC key is pressed
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && sliderMenu.classList.contains('active')) {
+        closeMenu();
+    }
+});
+
+// Function to toggle menu
+function toggleMenu() {
+    const isOpen = sliderMenu.classList.contains('active');
+    
+    if (isOpen) {
+        closeMenu();
+    } else {
+        openMenu();
+    }
+}
+
+// Function to open menu
+function openMenu() {
+    sliderMenu.classList.add('active');
+    sliderOverlay.classList.add('active');
+    floatingButton.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+}
+
+// Function to close menu
+function closeMenu() {
+    sliderMenu.classList.remove('active');
+    sliderOverlay.classList.remove('active');
+    floatingButton.classList.remove('active');
+    document.body.style.overflow = ''; // Re-enable scrolling
+}
+
+// Add click event listeners to menu items (for demo purposes)
+const menuItems = document.querySelectorAll('.slider-menu-item');
+menuItems.forEach(item => {
+    item.addEventListener('click', function() {
+        // You can add navigation or other functionality here
+        console.log('Menu item clicked:', this.querySelector('.slider-menu-item-text').textContent);
+        
+        // Close the menu after clicking an item (optional)
+        setTimeout(closeMenu, 300);
+    });
+});
+
+
 
 
 function copyCode(id) {
@@ -1568,10 +3923,378 @@ function filterComponentCards(searchTerm) {
     });
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+      const dropdownButton = document.querySelector('.dropdown-button');
+      const dropdownMenu = document.querySelector('.dropdown-menu');
+      
+      // Toggle dropdown when button is clicked
+      dropdownButton.addEventListener('click', function() {
+        const isOpen = dropdownButton.classList.toggle('active');
+        dropdownMenu.classList.toggle('active');
+        dropdownButton.setAttribute('aria-expanded', isOpen);
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+          dropdownButton.classList.remove('active');
+          dropdownMenu.classList.remove('active');
+          dropdownButton.setAttribute('aria-expanded', 'false');
+        }
+      });
+      
+      // Prevent clicks inside dropdown from closing it
+      dropdownMenu.addEventListener('click', function(event) {
+        event.stopPropagation();
+      });
+      
+      // Add keyboard navigation
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && dropdownMenu.classList.contains('active')) {
+          dropdownButton.classList.remove('active');
+          dropdownMenu.classList.remove('active');
+          dropdownButton.setAttribute('aria-expanded', 'false');
+          dropdownButton.focus();
+        }
+      });
+    });
+
 // Add event listener to the search bar
 document.querySelector('.search-bar input').addEventListener('input', function() {
     filterComponentCards(this.value);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+      const segments = document.querySelectorAll('.segment');
+      const slider = document.querySelector('.slider');
+
+      segments.forEach(segment => {
+        segment.addEventListener('click', () => {
+          // Remove active class from all segments
+          segments.forEach(s => s.classList.remove('active'));
+          
+          // Add active class to clicked segment
+          segment.classList.add('active');
+          
+          // Move slider
+          const index = parseInt(segment.dataset.index);
+          slider.style.transform = `translateX(${index * 105}%)`;
+        });
+      });
+    });
+
+// Add this function to update the primary color only in component previews
+function updatePrimaryColor(color) {
+    // Get all component previews
+    const componentPreviews = document.querySelectorAll('.component-preview');
+    
+    // Update elements only within the component previews
+    componentPreviews.forEach(preview => {
+        // Update buttons
+        preview.querySelectorAll('.btn-primary').forEach(btn => {
+            btn.style.backgroundColor = color;
+        });
+        
+        // Update toggle switches
+        preview.querySelectorAll('input:checked + .toggle-slider').forEach(toggle => {
+            toggle.style.backgroundColor = color;
+        });
+        
+        // Update navbar active items
+        preview.querySelectorAll('.navbar-item.active:after').forEach(navItem => {
+            navItem.style.backgroundColor = color;
+        });
+        
+        // Update other colored elements in components
+        preview.querySelectorAll('[class*="primary"]').forEach(el => {
+            if (window.getComputedStyle(el).backgroundColor === 'rgb(0, 112, 243)') { // Default blue color
+                el.style.backgroundColor = color;
+            }
+        });
+    });
+    
+    // Also update any new components that might be rendered later
+    window.componentPrimaryColor = color;
+    
+    console.log('Component colors updated to:', color);
+}
+
+// Modify the renderComponentCards function to apply the current color
+const originalRenderComponentCards = renderComponentCards;
+renderComponentCards = function() {
+    // Call the original function
+    originalRenderComponentCards();
+    
+    // Apply the current color if it exists
+    if (window.componentPrimaryColor) {
+        updatePrimaryColor(window.componentPrimaryColor);
+    }
+};
+
+// Helper function to darken/lighten colors
+function adjustColorBrightness(hex, percent) {
+    // Convert hex to RGB
+    let r = parseInt(hex.substring(1,3), 16);
+    let g = parseInt(hex.substring(3,5), 16);
+    let b = parseInt(hex.substring(5,7), 16);
+
+    // Adjust brightness
+    r = Math.max(0, Math.min(255, r + percent));
+    g = Math.max(0, Math.min(255, g + percent));
+    b = Math.max(0, Math.min(255, b + percent));
+
+    // Convert back to hex
+    return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+}
+
+// Function to update fonts only in component cards
+function updateCardFonts(fontFamily) {
+    // First ensure the font is loaded for non-system fonts
+    const googleFonts = {
+        "'Roboto', sans-serif": "Roboto:400,500,700",
+        "'Montserrat', sans-serif": "Montserrat:400,500,700",
+        "'Open Sans', sans-serif": "Open Sans:400,600,700"
+    };
+    
+    // Add Google Font if needed
+    if (googleFonts[fontFamily] && !document.getElementById(`font-${googleFonts[fontFamily].split(':')[0]}`)) {
+        const fontLink = document.createElement('link');
+        fontLink.id = `font-${googleFonts[fontFamily].split(':')[0]}`;
+        fontLink.rel = 'stylesheet';
+        fontLink.href = `https://fonts.googleapis.com/css2?family=${googleFonts[fontFamily].replace(' ', '+')}&display=swap`;
+        document.head.appendChild(fontLink);
+        
+        // Allow a moment for the font to load
+        fontLink.onload = function() {
+            applyFontToComponents(fontFamily);
+        };
+    } else {
+        // For system fonts, apply immediately
+        applyFontToComponents(fontFamily);
+    }
+    
+    console.log(`Updated component cards to use ${fontFamily}`);
+}
+
+// Helper function to apply fonts after ensuring they're loaded
+function applyFontToComponents(fontFamily) {
+    // Target all component previews and their content
+    const componentPreviews = document.querySelectorAll('.component-preview');
+    
+    componentPreviews.forEach(preview => {
+        // Apply the font to all elements inside the preview
+        const elements = preview.querySelectorAll('*');
+        elements.forEach(el => {
+            el.style.fontFamily = fontFamily;
+        });
+        
+        // Also apply to the preview container itself
+        preview.style.fontFamily = fontFamily;
+    });
+    
+    // Target card content elements
+    const cardContents = document.querySelectorAll('.card-content');
+    cardContents.forEach(content => {
+        content.style.fontFamily = fontFamily;
+    });
+}
+
+// Function to update logos in components
+function updateLogo(logoUrl) {
+    // Display the logo in the preview
+    const logoPreview = document.getElementById('logo-preview');
+    logoPreview.innerHTML = logoUrl ? `<img src="${logoUrl}" alt="Logo" style="max-height: 40px; max-width: 100%;">` : '';
+    
+    // Find components where logos could be placed and update them
+    
+    // Update in navbar components
+    const navbarBrands = document.querySelectorAll('.navbar-brand');
+    navbarBrands.forEach(brand => {
+        // If there's already an image, update it, otherwise create one
+        const existingLogo = brand.querySelector('img');
+        if (existingLogo) {
+            existingLogo.src = logoUrl;
+        } else if (logoUrl) {
+            // Save the original text content
+            const originalText = brand.textContent;
+            brand.innerHTML = `<img src="${logoUrl}" alt="Brand Logo" style="max-height: 30px; margin-right: 10px;"> ${originalText}`;
+        }
+    });
+    
+    // Update in component cards that might have logo placeholders
+    const cardImages = document.querySelectorAll('.component-card-image');
+    cardImages.forEach(image => {
+        if (logoUrl) {
+            image.innerHTML = `<img src="${logoUrl}" alt="Logo" style="max-height: 100%; max-width: 100%; object-fit: contain; padding: 10px;">`;
+            image.style.display = 'flex';
+            image.style.justifyContent = 'center';
+            image.style.alignItems = 'center';
+        } else {
+            image.innerHTML = '';
+            image.style.backgroundColor = '#f0f0f0';
+        }
+    });
+    
+    // Update in modal headers
+    const modalHeaders = document.querySelectorAll('.modal-header');
+    modalHeaders.forEach(header => {
+        const title = header.querySelector('h3');
+        if (title && logoUrl) {
+            title.innerHTML = `<img src="${logoUrl}" alt="Logo" style="max-height: 20px; margin-right: 8px; vertical-align: middle;"> ${title.textContent}`;
+        }
+    });
+    
+    console.log(`Updated logos with: ${logoUrl}`);
+}
+
+// Function to update logos in navbar components only
+function updateLogo(logoUrl) {
+    // Display the logo in the preview
+    const logoPreview = document.getElementById('logo-preview');
+    logoPreview.innerHTML = logoUrl ? `<img src="${logoUrl}" alt="Logo" style="max-height: 40px; max-width: 100%;">` : '';
+    
+    // Only update navbar components
+    const navbarBrands = document.querySelectorAll('.navbar-brand');
+    navbarBrands.forEach(brand => {
+        if (logoUrl) {
+            // Replace with logo image only
+            brand.innerHTML = `<img src="${logoUrl}" alt="Logo" style="max-height: 30px;">`;
+        } else {
+            // Use a placeholder text instead of "Brand"
+            brand.innerHTML = `<span style="font-weight: bold;">Logo</span>`;
+        }
+    });
+    
+    console.log(`Updated navbar logo with: ${logoUrl}`);
+}
+
+// Add this to the head section of your document when it's first loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Preload all Google Fonts
+    const fontLink = document.createElement('link');
+    fontLink.rel = 'stylesheet';
+    fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap';
+    document.head.appendChild(fontLink);
+    
+    console.log('Preloaded all Google Fonts');
+});
+
+// Simplified function to update fonts in component cards
+function updateCardFonts(fontFamily) {
+    // Create a CSS rule that targets all elements inside component previews
+    const styleId = 'component-font-style';
+    let styleElement = document.getElementById(styleId);
+    
+    if (!styleElement) {
+        styleElement = document.createElement('style');
+        styleElement.id = styleId;
+        document.head.appendChild(styleElement);
+    }
+    
+    // Apply the font family to all preview elements
+    styleElement.textContent = `
+        .component-preview, 
+        .component-preview *, 
+        .card-content, 
+        .card-content * {
+            font-family: ${fontFamily} !important;
+        }
+    `;
+    
+    console.log(`Updated component cards to use ${fontFamily}`);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+            // Function to create and show a toast
+            function showToast(message = 'Action completed successfully!') {
+                const toastContainer = document.querySelector('.v0-custom-toast-container');
+                
+                // Create toast element
+                const toast = document.createElement('div');
+                toast.className = 'v0-custom-toast';
+                
+                // Create toast content
+                const toastHTML = `
+                    <div class="v0-custom-toast-content">
+                        <div class="v0-custom-toast-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="v0-custom-toast-message">${message}</div>
+                    </div>
+                    <button class="v0-custom-toast-close">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                    <div class="v0-custom-toast-progress"></div>
+                `;
+                
+                toast.innerHTML = toastHTML;
+                toastContainer.appendChild(toast);
+                
+                // Show toast with animation
+                setTimeout(() => {
+                    toast.classList.add('v0-custom-show');
+                }, 10);
+                
+                // Auto remove after 3 seconds
+                const timeout = setTimeout(() => {
+                    removeToast(toast);
+                }, 3000);
+                
+                // Close button functionality
+                const closeBtn = toast.querySelector('.v0-custom-toast-close');
+                closeBtn.addEventListener('click', () => {
+                    clearTimeout(timeout);
+                    removeToast(toast);
+                });
+            }
+            
+            // Function to remove toast with animation
+            function removeToast(toast) {
+                toast.classList.remove('v0-custom-show');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }
+            
+            // Add click event ONLY to the custom button
+            const button = document.querySelector('.v0-custom-button');
+            if (button) {
+                button.addEventListener('click', () => {
+                    showToast('Button clicked successfully!');
+                });
+            }
+            
+            // Remove the document-level click listener that was causing toasts on all clicks
+            // document.addEventListener('click', (e) => { ... }); - REMOVED
+        });
     </script>
 
     <!-- Add this right before the closing </body> tag -->
