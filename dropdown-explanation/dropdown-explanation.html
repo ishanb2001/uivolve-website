@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Dropdown Logic Flow | Visual Learning</title>
+    <style>
+        .dropdown-flow-root {
+            /* Modern color palette inspired by Vercel */
+            --dropdown-flow-bg-primary: #ffffff;
+            --dropdown-flow-bg-secondary: #fafafa;
+            --dropdown-flow-bg-tertiary: #f3f4f6;
+            --dropdown-flow-text-primary: #000000;
+            --dropdown-flow-text-secondary: #666666;
+            --dropdown-flow-text-tertiary: #888888;
+            --dropdown-flow-accent: #0070f3;
+            --dropdown-flow-accent-light: #3291ff;
+            --dropdown-flow-accent-dark: #0761d1;
+            --dropdown-flow-border: #eaeaea;
+            --dropdown-flow-shadow: rgba(0, 0, 0, 0.08);
+            
+            /* Node colors - refined for modern look */
+            --dropdown-flow-setup-color: #ebf5ff;
+            --dropdown-flow-setup-border: #0070f3;
+            --dropdown-flow-event-color: #f0f9ff;
+            --dropdown-flow-event-border: #0ea5e9;
+            --dropdown-flow-state-color: #fef3c7;
+            --dropdown-flow-state-border: #f59e0b;
+            --dropdown-flow-selection-color: #f3e8ff;
+            --dropdown-flow-selection-border: #8b5cf6;
+            --dropdown-flow-condition-color: #fee2e2;
+            --dropdown-flow-condition-border: #ef4444;
+            --dropdown-flow-action-color: #dcfce7;
+            --dropdown-flow-action-border: #10b981;
+        }
+
+        .dropdown-flow-root * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .dropdown-flow-root {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--dropdown-flow-bg-primary);
+            color: var(--dropdown-flow-text-primary);
+            line-height: 1.6;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .dropdown-flow-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(to bottom, #fff, #fafafa);
+            border-bottom: 1px solid var(--dropdown-flow-border);
+            position: relative;
+        }
+
+        .dropdown-flow-back-button {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--dropdown-flow-text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            transition: all 0.2s ease;
+            border: 1px solid var(--dropdown-flow-border);
+            background-color: var(--dropdown-flow-bg-primary);
+        }
+
+        .dropdown-flow-back-button:hover {
+            background-color: var(--dropdown-flow-bg-secondary);
+            color: var(--dropdown-flow-text-primary);
+        }
+
+        .dropdown-flow-back-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .dropdown-flow-logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dropdown-flow-logo-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(to right, var(--dropdown-flow-accent), var(--dropdown-flow-accent-light));
+            border-radius: 50%;
+        }
+
+        .dropdown-flow-h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--dropdown-flow-text-primary), var(--dropdown-flow-text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.025em;
+        }
+
+        .dropdown-flow-subtitle {
+            font-size: 1.125rem;
+            color: var(--dropdown-flow-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        .dropdown-flow-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 1.5rem 3rem;
+        }
+
+        .dropdown-flow-main-content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .dropdown-flow-main-content {
+                flex-direction: row;
+                gap: 2.5rem;
+            }
+        }
+
+        .dropdown-flow-flow-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+        }
+
+        .dropdown-flow-code-preview {
+            width: 100%;
+            max-width: 500px;
+            position: sticky;
+            top: 2rem;
+            align-self: flex-start;
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .dropdown-flow-code-preview {
+                display: block;
+            }
+        }
+
+        .dropdown-flow-code-preview-mobile {
+            width: 100%;
+            margin: 1.5rem 0;
+            display: block;
+        }
+
+        @media (min-width: 1024px) {
+            .dropdown-flow-code-preview-mobile {
+                display: none;
+            }
+        }
+
+        .dropdown-flow-code-preview-content {
+            background-color: var(--dropdown-flow-bg-primary);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid var(--dropdown-flow-border);
+            box-shadow: 0 4px 12px var(--dropdown-flow-shadow);
+        }
+
+        .dropdown-flow-code-preview-title {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            color: var(--dropdown-flow-text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+        }
+
+        .dropdown-flow-code-preview-step {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #fff;
+        }
+
+        .dropdown-flow-code-preview-snippet {
+            background-color: #f8f9fc;
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+            font-family: 'Fira Code', 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            margin-bottom: 1.25rem;
+            border: 1px solid #edf2f7;
+            line-height: 1.5;
+        }
+
+        .dropdown-flow-code-preview-explanation {
+            font-size: 0.9375rem;
+            color: var(--dropdown-flow-text-secondary);
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .dropdown-flow-node {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border-radius: 0.75rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 6px var(--dropdown-flow-shadow);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .dropdown-flow-node:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--dropdown-flow-shadow);
+        }
+
+        .dropdown-flow-setup-node {
+            background-color: var(--dropdown-flow-setup-color);
+            border-color: var(--dropdown-flow-setup-border);
+        }
+
+        .dropdown-flow-setup-preview {
+            background-color: var(--dropdown-flow-setup-border);
+        }
+
+        .dropdown-flow-event-node {
+            background-color: var(--dropdown-flow-event-color);
+            border-color: var(--dropdown-flow-event-border);
+        }
+
+        .dropdown-flow-event-preview {
+            background-color: var(--dropdown-flow-event-border);
+        }
+
+        .dropdown-flow-state-node {
+            background-color: var(--dropdown-flow-state-color);
+            border-color: var(--dropdown-flow-state-border);
+        }
+
+        .dropdown-flow-state-preview {
+            background-color: var(--dropdown-flow-state-border);
+        }
+
+        .dropdown-flow-selection-node {
+            background-color: var(--dropdown-flow-selection-color);
+            border-color: var(--dropdown-flow-selection-border);
+        }
+
+        .dropdown-flow-selection-preview {
+            background-color: var(--dropdown-flow-selection-border);
+        }
+
+        .dropdown-flow-condition-node {
+            background-color: var(--dropdown-flow-condition-color);
+            border-color: var(--dropdown-flow-condition-border);
+        }
+
+        .dropdown-flow-condition-preview {
+            background-color: var(--dropdown-flow-condition-border);
+        }
+
+        .dropdown-flow-action-node {
+            background-color: var(--dropdown-flow-action-color);
+            border-color: var(--dropdown-flow-action-border);
+        }
+
+        .dropdown-flow-action-preview {
+            background-color: var(--dropdown-flow-action-border);
+        }
+
+        .dropdown-flow-node-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .dropdown-flow-node-content {
+            flex-grow: 1;
+        }
+
+        .dropdown-flow-node-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.8);
+            margin-bottom: 0.25rem;
+        }
+
+        .dropdown-flow-node-description {
+            font-size: 0.875rem;
+            color: rgba(0, 0, 0, 0.65);
+        }
+
+        .dropdown-flow-connector {
+            width: 2px;
+            height: 16px;
+            background-color: #ccc;
+            position: relative;
+            margin: 0.125rem 0;
+        }
+
+        .dropdown-flow-connector::before,
+        .dropdown-flow-connector::after {
+            display: none;
+        }
+
+        .dropdown-flow-section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--dropdown-flow-text-primary);
+            width: 100%;
+            text-align: left;
+            padding-left: 0.75rem;
+            border-left: 3px solid var(--dropdown-flow-accent);
+        }
+
+        .dropdown-flow-demo-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: var(--dropdown-flow-bg-primary);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-top: 3rem;
+            border: 1px solid var(--dropdown-flow-border);
+            box-shadow: 0 4px 12px var(--dropdown-flow-shadow);
+        }
+
+        .dropdown-flow-demo-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--dropdown-flow-text-primary);
+            font-weight: 600;
+        }
+
+        .dropdown-flow-dropdown-demo {
+            width: 250px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .dropdown-flow-dropdown-btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: var(--dropdown-flow-bg-primary);
+            color: var(--dropdown-flow-text-primary);
+            border: 1px solid var(--dropdown-flow-border);
+            border-radius: 0.375rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9375rem;
+            box-shadow: 0 1px 3px var(--dropdown-flow-shadow);
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-flow-dropdown-btn:hover {
+            border-color: var(--dropdown-flow-accent-light);
+            box-shadow: 0 2px 6px rgba(0, 112, 243, 0.1);
+        }
+
+        .dropdown-flow-dropdown-content {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            width: 100%;
+            background-color: var(--dropdown-flow-bg-primary);
+            border: 1px solid var(--dropdown-flow-border);
+            border-radius: 0.375rem;
+            overflow: hidden;
+            z-index: 10;
+            display: none;
+            box-shadow: 0 4px 12px var(--dropdown-flow-shadow);
+        }
+
+        .dropdown-flow-dropdown-content.dropdown-flow-show {
+            display: block;
+            animation: dropdown-flow-fadeIn 0.2s ease;
+        }
+
+        @keyframes dropdown-flow-fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-flow-dropdown-item {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            color: var(--dropdown-flow-text-primary);
+            transition: background-color 0.15s ease;
+        }
+
+        .dropdown-flow-dropdown-item:hover {
+            background-color: var(--dropdown-flow-bg-secondary);
+        }
+
+        .dropdown-flow-active-node {
+            transform: scale(1.02);
+            box-shadow: 0 6px 16px var(--dropdown-flow-shadow);
+            border-width: 1.5px;
+        }
+
+        .dropdown-flow-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 2rem 0 1rem;
+            justify-content: center;
+            padding: 1rem;
+            background-color: var(--dropdown-flow-bg-secondary);
+            border-radius: 0.5rem;
+            border: 1px solid var(--dropdown-flow-border);
+        }
+
+        .dropdown-flow-legend-item {
+            display: flex;
+            align-items: center;
+            margin-right: 0.75rem;
+            color: var(--dropdown-flow-text-primary);
+            font-size: 0.875rem;
+        }
+
+        .dropdown-flow-legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            margin-right: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .dropdown-flow-setup-legend {
+            background-color: var(--dropdown-flow-setup-border);
+        }
+
+        .dropdown-flow-event-legend {
+            background-color: var(--dropdown-flow-event-border);
+        }
+
+        .dropdown-flow-state-legend {
+            background-color: var(--dropdown-flow-state-border);
+        }
+
+        .dropdown-flow-selection-legend {
+            background-color: var(--dropdown-flow-selection-border);
+        }
+
+        .dropdown-flow-condition-legend {
+            background-color: var(--dropdown-flow-condition-border);
+        }
+
+        .dropdown-flow-action-legend {
+            background-color: var(--dropdown-flow-action-border);
+        }
+
+        .dropdown-flow-keyword {
+            color: #0000ff;
+        }
+
+        .dropdown-flow-string {
+            color: #a31515;
+        }
+
+        .dropdown-flow-comment {
+            color: #008000;
+        }
+
+        .dropdown-flow-function {
+            color: #795E26;
+        }
+
+        .dropdown-flow-variable {
+            color: #1a1a1a;
+        }
+
+        .dropdown-flow-property {
+            color: #001080;
+        }
+
+        .dropdown-flow-footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            color: var(--dropdown-flow-text-secondary);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--dropdown-flow-border);
+            background-color: var(--dropdown-flow-bg-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="dropdown-flow-root">
+        <header class="dropdown-flow-header">
+            <a href="../index.html" class="dropdown-flow-back-button">
+                <svg class="dropdown-flow-back-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back to Home
+            </a>
+            <div class="dropdown-flow-logo">
+                <span class="dropdown-flow-logo-dot"></span>
+                FlowJS
+            </div>
+            <h1 class="dropdown-flow-h1">Interactive Dropdown Logic Flow</h1>
+            <p class="dropdown-flow-subtitle">Click on any step to see the exact code that makes it work</p>
+        </header>
+
+        <div class="dropdown-flow-container">
+            <div class="dropdown-flow-legend">
+                <div class="dropdown-flow-legend-item">
+                    <div class="dropdown-flow-legend-color dropdown-flow-setup-legend"></div>
+                    <span>Setup</span>
+                </div>
+                <div class="dropdown-flow-legend-item">
+                    <div class="dropdown-flow-legend-color dropdown-flow-event-legend"></div>
+                    <span>Event</span>
+                </div>
+                <div class="dropdown-flow-legend-item">
+                    <div class="dropdown-flow-legend-color dropdown-flow-condition-legend"></div>
+                    <span>Condition</span>
+                </div>
+                <div class="dropdown-flow-legend-item">
+                    <div class="dropdown-flow-legend-color dropdown-flow-action-legend"></div>
+                    <span>Action</span>
+                </div>
+                <div class="dropdown-flow-legend-item">
+                    <div class="dropdown-flow-legend-color dropdown-flow-state-legend"></div>
+                    <span>State</span>
+                </div>
+                <div class="dropdown-flow-legend-item">
+                    <div class="dropdown-flow-legend-color dropdown-flow-selection-legend"></div>
+                    <span>Selection</span>
+                </div>
+            </div>
+
+            <div class="dropdown-flow-main-content">
+                <div class="dropdown-flow-flow-container">
+                    <!-- Initial Setup Section -->
+                    <div class="dropdown-flow-section-title">1. Initial Setup</div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-setup-node" id="dropdown-flow-node1" data-type="setup">
+                        <div class="dropdown-flow-node-icon">1</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Find Dropdown Button</div>
+                            <div class="dropdown-flow-node-description">Get the button element from the page using its ID</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-setup-node" id="dropdown-flow-node2" data-type="setup">
+                        <div class="dropdown-flow-node-icon">2</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Find Dropdown Menu</div>
+                            <div class="dropdown-flow-node-description">Get the menu element that will be shown/hidden</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-setup-node" id="dropdown-flow-node3" data-type="setup">
+                        <div class="dropdown-flow-node-icon">3</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Find Menu Options</div>
+                            <div class="dropdown-flow-node-description">Get all the clickable options inside the menu</div>
+                        </div>
+                    </div>
+
+                    <!-- Code preview for mobile -->
+                    <div class="dropdown-flow-code-preview-mobile" id="dropdown-flow-codePreviewMobile"></div>
+
+                    <!-- Button Click Section -->
+                    <div class="dropdown-flow-section-title">2. Button Click Handling</div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-event-node" id="dropdown-flow-node4" data-type="event">
+                        <div class="dropdown-flow-node-icon">4</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Listen for Button Click</div>
+                            <div class="dropdown-flow-node-description">Set up an event listener for when user clicks the button</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-action-node" id="dropdown-flow-node5" data-type="action">
+                        <div class="dropdown-flow-node-icon">5</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Stop Event Propagation</div>
+                            <div class="dropdown-flow-node-description">Prevent the click from triggering other elements</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-condition-node" id="dropdown-flow-node6" data-type="condition">
+                        <div class="dropdown-flow-node-icon">6</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Check Current State</div>
+                            <div class="dropdown-flow-node-description">Is the dropdown menu currently visible or hidden?</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-action-node" id="dropdown-flow-node7" data-type="action">
+                        <div class="dropdown-flow-node-icon">7</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Toggle Menu Visibility</div>
+                            <div class="dropdown-flow-node-description">Add or remove the 'show' class to display/hide the menu</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-action-node" id="dropdown-flow-node8" data-type="action">
+                        <div class="dropdown-flow-node-icon">8</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Rotate Arrow Icon</div>
+                            <div class="dropdown-flow-node-description">Flip the arrow up when open, down when closed</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-state-node" id="dropdown-flow-node9" data-type="state">
+                        <div class="dropdown-flow-node-icon">9</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Update Menu State</div>
+                            <div class="dropdown-flow-node-description">Menu is now either visible or hidden</div>
+                        </div>
+                    </div>
+
+                    <!-- Outside Click Section -->
+                    <div class="dropdown-flow-section-title">3. Outside Click Detection</div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-event-node" id="dropdown-flow-node10" data-type="event">
+                        <div class="dropdown-flow-node-icon">10</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Listen for Document Clicks</div>
+                            <div class="dropdown-flow-node-description">Set up event listener for clicks anywhere on the page</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-condition-node" id="dropdown-flow-node11" data-type="condition">
+                        <div class="dropdown-flow-node-icon">11</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Check Click Target</div>
+                            <div class="dropdown-flow-node-description">Was the click outside the dropdown button?</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-condition-node" id="dropdown-flow-node12" data-type="condition">
+                        <div class="dropdown-flow-node-icon">12</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Check Menu State</div>
+                            <div class="dropdown-flow-node-description">Is the dropdown menu currently visible?</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-action-node" id="dropdown-flow-node13" data-type="action">
+                        <div class="dropdown-flow-node-icon">13</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Hide Menu</div>
+                            <div class="dropdown-flow-node-description">Remove the 'show' class to hide the menu</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-action-node" id="dropdown-flow-node14" data-type="action">
+                        <div class="dropdown-flow-node-icon">14</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Reset Arrow Icon</div>
+                            <div class="dropdown-flow-node-description">Return arrow to pointing down</div>
+                        </div>
+                    </div>
+
+                    <!-- Option Selection Section -->
+                    <div class="dropdown-flow-section-title">4. Option Selection</div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-event-node" id="dropdown-flow-node15" data-type="event">
+                        <div class="dropdown-flow-node-icon">15</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Listen for Option Clicks</div>
+                            <div class="dropdown-flow-node-description">Set up event listeners for each menu option</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-action-node" id="dropdown-flow-node16" data-type="action">
+                        <div class="dropdown-flow-node-icon">16</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Get Selected Text</div>
+                            <div class="dropdown-flow-node-description">Read the text content of the clicked option</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-action-node" id="dropdown-flow-node17" data-type="action">
+                        <div class="dropdown-flow-node-icon">17</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Update Button Text</div>
+                            <div class="dropdown-flow-node-description">Change button text to show the selected option</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-action-node" id="dropdown-flow-node18" data-type="action">
+                        <div class="dropdown-flow-node-icon">18</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Hide Menu</div>
+                            <div class="dropdown-flow-node-description">Remove the 'show' class to hide the menu</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-action-node" id="dropdown-flow-node19" data-type="action">
+                        <div class="dropdown-flow-node-icon">19</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Reset Arrow Icon</div>
+                            <div class="dropdown-flow-node-description">Return arrow to pointing down</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-flow-connector"></div>
+                    
+                    <div class="dropdown-flow-node dropdown-flow-selection-node" id="dropdown-flow-node20" data-type="selection">
+                        <div class="dropdown-flow-node-icon">20</div>
+                        <div class="dropdown-flow-node-content">
+                            <div class="dropdown-flow-node-title">Selection Complete</div>
+                            <div class="dropdown-flow-node-description">User has successfully selected an option</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code preview for desktop -->
+                <div class="dropdown-flow-code-preview" id="dropdown-flow-codePreview"></div>
+            </div>
+
+            <div class="dropdown-flow-demo-container">
+                <h3 class="dropdown-flow-demo-title">Live Demo</h3>
+                <div class="dropdown-flow-dropdown-demo">
+                    <button class="dropdown-flow-dropdown-btn" id="dropdown-flow-dropdownBtn">
+                        <span>Select an option</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="dropdown-flow-dropdown-content" id="dropdown-flow-dropdownContent">
+                        <div class="dropdown-flow-dropdown-item">Option 1</div>
+                        <div class="dropdown-flow-dropdown-item">Option 2</div>
+                        <div class="dropdown-flow-dropdown-item">Option 3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="dropdown-flow-footer">
+            <p>© 2025 FlowJS • Visual JavaScript Learning</p>
+        </footer>
+    </div>
+
+    <script>
+        // Code snippets for each node
+        const dropdownFlowCodeSnippets = {
+            1: {
+                code: `<span class="dropdown-flow-keyword">const</span> <span class="dropdown-flow-variable">dropdownBtn</span> = <span class="dropdown-flow-variable">document</span>.<span class="dropdown-flow-function">getElementById</span>(<span class="dropdown-flow-string">'dropdownBtn'</span>);`,
+                explanation: "This line finds the dropdown button element on the page using its unique ID. We store a reference to this element in a variable called 'dropdownBtn' so we can work with it later."
+            },
+            2: {
+                code: `<span class="dropdown-flow-keyword">const</span> <span class="dropdown-flow-variable">dropdownContent</span> = <span class="dropdown-flow-variable">document</span>.<span class="dropdown-flow-function">getElementById</span>(<span class="dropdown-flow-string">'dropdownContent'</span>);`,
+                explanation: "This line finds the dropdown menu element (the part that appears/disappears) using its ID. We store it in a variable called 'dropdownContent'."
+            },
+            3: {
+                code: `<span class="dropdown-flow-keyword">const</span> <span class="dropdown-flow-variable">dropdownItems</span> = <span class="dropdown-flow-variable">document</span>.<span class="dropdown-flow-function">querySelectorAll</span>(<span class="dropdown-flow-string">'.dropdown-item'</span>);`,
+                explanation: "This line finds all the clickable options inside the dropdown menu. The querySelectorAll method returns a list of all elements with the class 'dropdown-item'."
+            },
+            4: {
+                code: `<span class="dropdown-flow-variable">dropdownBtn</span>.<span class="dropdown-flow-function">addEventListener</span>(<span class="dropdown-flow-string">'click'</span>, <span class="dropdown-flow-keyword">function</span>(<span class="dropdown-flow-variable">event</span>) {
+  <span class="dropdown-flow-comment">// Code to run when button is clicked</span>
+});`,
+                explanation: "This sets up an event listener that waits for the user to click on the dropdown button. When clicked, it will run the function inside the curly braces."
+            },
+            5: {
+                code: `<span class="dropdown-flow-variable">event</span>.<span class="dropdown-flow-function">stopPropagation</span>();`,
+                explanation: "This prevents the click event from 'bubbling up' to parent elements. It's important because we'll have another click listener on the document that would otherwise be triggered."
+            },
+            6: {
+                code: `<span class="dropdown-flow-comment">// Check if dropdown is currently visible</span>
+<span class="dropdown-flow-keyword">if</span> (<span class="dropdown-flow-variable">dropdownContent</span>.<span class="dropdown-flow-property">classList</span>.<span class="dropdown-flow-function">contains</span>(<span class="dropdown-flow-string">'show'</span>)) {
+  <span class="dropdown-flow-comment">// Dropdown is visible</span>
+} <span class="dropdown-flow-keyword">else</span> {
+  <span class="dropdown-flow-comment">// Dropdown is hidden</span>
+}`,
+                explanation: "This checks the current state of the dropdown menu by looking for the 'show' class. This is an implicit check - in our toggle code we don't actually write this if/else, but it's what happens behind the scenes."
+            },
+            7: {
+                code: `<span class="dropdown-flow-variable">dropdownContent</span>.<span class="dropdown-flow-property">classList</span>.<span class="dropdown-flow-function">toggle</span>(<span class="dropdown-flow-string">'show'</span>);`,
+                explanation: "This toggles the 'show' class on the dropdown menu. If the class is present, it removes it (hiding the menu). If the class is absent, it adds it (showing the menu)."
+            },
+            8: {
+                code: `<span class="dropdown-flow-variable">dropdownBtn</span>.<span class="dropdown-flow-function">querySelector</span>(<span class="dropdown-flow-string">'span:last-child'</span>).<span class="dropdown-flow-property">textContent</span> = 
+  <span class="dropdown-flow-variable">dropdownContent</span>.<span class="dropdown-flow-property">classList</span>.<span class="dropdown-flow-function">contains</span>(<span class="dropdown-flow-string">'show'</span>) ? <span class="dropdown-flow-string">'▲'</span> : <span class="dropdown-flow-string">'▼'</span>;`,
+                explanation: "This changes the arrow icon based on the dropdown state. If the menu is visible (has the 'show' class), it shows an up arrow (▲). Otherwise, it shows a down arrow (▼)."
+            },
+            9: {
+                code: `<span class="dropdown-flow-comment">// At this point, the dropdown's state has been updated</span>
+<span class="dropdown-flow-comment">// The menu is either visible or hidden based on the toggle</span>`,
+                explanation: "This represents the updated state of the dropdown after the toggle. The menu is now either visible or hidden, and the arrow is pointing in the corresponding direction."
+            },
+            10: {
+                code: `<span class="dropdown-flow-variable">document</span>.<span class="dropdown-flow-function">addEventListener</span>(<span class="dropdown-flow-string">'click'</span>, <span class="dropdown-flow-keyword">function</span>(<span class="dropdown-flow-variable">event</span>) {
+  <span class="dropdown-flow-comment">// Code to run when clicking anywhere on the page</span>
+});`,
+                explanation: "This sets up an event listener on the entire document (webpage). It will run the function inside whenever the user clicks anywhere on the page."
+            },
+            11: {
+                code: `<span class="dropdown-flow-keyword">if</span> (!<span class="dropdown-flow-variable">event</span>.<span class="dropdown-flow-property">target</span>.<span class="dropdown-flow-function">matches</span>(<span class="dropdown-flow-string">'.dropdown-btn'</span>) && 
+    !<span class="dropdown-flow-variable">event</span>.<span class="dropdown-flow-property">target</span>.<span class="dropdown-flow-function">closest</span>(<span class="dropdown-flow-string">'.dropdown-btn'</span>)) {
+  <span class="dropdown-flow-comment">// Click was outside the dropdown button</span>
+}`,
+                explanation: "This checks if the click was outside the dropdown button. The '!' means 'not', so we're checking if the clicked element is NOT the dropdown button and is NOT inside the dropdown button."
+            },
+            12: {
+                code: `<span class="dropdown-flow-keyword">if</span> (<span class="dropdown-flow-variable">dropdownContent</span>.<span class="dropdown-flow-property">classList</span>.<span class="dropdown-flow-function">contains</span>(<span class="dropdown-flow-string">'show'</span>)) {
+  <span class="dropdown-flow-comment">// Dropdown is currently visible</span>
+}`,
+                explanation: "This checks if the dropdown menu is currently visible by looking for the 'show' class. If it is visible, we'll want to hide it when clicking outside."
+            },
+            13: {
+                code: `<span class="dropdown-flow-variable">dropdownContent</span>.<span class="dropdown-flow-property">classList</span>.<span class="dropdown-flow-function">remove</span>(<span class="dropdown-flow-string">'show'</span>);`,
+                explanation: "This removes the 'show' class from the dropdown menu, which hides it. This happens when the user clicks outside the dropdown button while the menu is open."
+            },
+            14: {
+                code: `<span class="dropdown-flow-variable">dropdownBtn</span>.<span class="dropdown-flow-function">querySelector</span>(<span class="dropdown-flow-string">'span:last-child'</span>).<span class="dropdown-flow-property">textContent</span> = <span class="dropdown-flow-string">'▼'</span>;`,
+                explanation: "This resets the arrow icon to point downward (▼) after the dropdown menu is closed by clicking outside."
+            },
+            15: {
+                code: `<span class="dropdown-flow-variable">dropdownItems</span>.<span class="dropdown-flow-function">forEach</span>(<span class="dropdown-flow-variable">item</span> => {
+  <span class="dropdown-flow-variable">item</span>.<span class="dropdown-flow-function">addEventListener</span>(<span class="dropdown-flow-string">'click'</span>, <span class="dropdown-flow-keyword">function</span>() {
+    <span class="dropdown-flow-comment">// Code to run when an option is clicked</span>
+  });
+});`,
+                explanation: "This sets up click event listeners for each option in the dropdown menu. The forEach method runs the function once for each dropdown item."
+            },
+            16: {
+                code: `<span class="dropdown-flow-keyword">const</span> <span class="dropdown-flow-variable">selectedText</span> = <span class="dropdown-flow-keyword">this</span>.<span class="dropdown-flow-property">textContent</span>;`,
+                explanation: "This gets the text content of the clicked option and stores it in a variable called 'selectedText'. The 'this' keyword refers to the specific dropdown item that was clicked."
+            },
+            17: {
+                code: `<span class="dropdown-flow-variable">dropdownBtn</span>.<span class="dropdown-flow-function">querySelector</span>(<span class="dropdown-flow-string">'span:first-child'</span>).<span class="dropdown-flow-property">textContent</span> = <span class="dropdown-flow-variable">selectedText</span>;`,
+                explanation: "This updates the text of the dropdown button to show the selected option. It finds the first span inside the button (which contains the text) and changes its content."
+            },
+            18: {
+                code: `<span class="dropdown-flow-variable">dropdownContent</span>.<span class="dropdown-flow-property">classList</span>.<span class="dropdown-flow-function">remove</span>(<span class="dropdown-flow-string">'show'</span>);`,
+                explanation: "This removes the 'show' class from the dropdown menu, which hides it after an option has been selected."
+            },
+            19: {
+                code: `<span class="dropdown-flow-variable">dropdownBtn</span>.<span class="dropdown-flow-function">querySelector</span>(<span class="dropdown-flow-string">'span:last-child'</span>).<span class="dropdown-flow-property">textContent</span> = <span class="dropdown-flow-string">'▼'</span>;`,
+                explanation: "This resets the arrow icon to point downward (▼) after an option has been selected and the dropdown is closed."
+            },
+            20: {
+                code: `<span class="dropdown-flow-comment">// At this point, the selection is complete</span>
+<span class="dropdown-flow-comment">// Button text shows the selected option</span>
+<span class="dropdown-flow-comment">// Dropdown menu is hidden</span>`,
+                explanation: "This represents the final state after a selection is made. The dropdown button now shows the selected option, the menu is hidden, and the arrow is pointing down."
+            }
+        };
+
+        // Dropdown functionality
+        const dropdownFlowDropdownBtn = document.getElementById('dropdown-flow-dropdownBtn');
+        const dropdownFlowDropdownContent = document.getElementById('dropdown-flow-dropdownContent');
+        const dropdownFlowDropdownItems = document.querySelectorAll('.dropdown-flow-dropdown-item');
+        const dropdownFlowNodes = document.querySelectorAll('.dropdown-flow-node');
+        const dropdownFlowCodePreview = document.getElementById('dropdown-flow-codePreview');
+        const dropdownFlowCodePreviewMobile = document.getElementById('dropdown-flow-codePreviewMobile');
+        
+        // Current highlighted node
+        let dropdownFlowActiveNodeId = 1;
+        
+        // Initialize code preview
+        updateDropdownFlowCodePreview(1);
+        
+        // Toggle dropdown when button is clicked
+        dropdownFlowDropdownBtn.addEventListener('click', function(event) {
+            event.stopPropagation();
+            
+            // Highlight nodes in sequence
+            highlightDropdownFlowNode(4);
+            setTimeout(() => highlightDropdownFlowNode(5), 300);
+            setTimeout(() => highlightDropdownFlowNode(6), 600);
+            setTimeout(() => highlightDropdownFlowNode(7), 900);
+            setTimeout(() => highlightDropdownFlowNode(8), 1200);
+            setTimeout(() => highlightDropdownFlowNode(9), 1500);
+            
+            // Toggle dropdown
+            dropdownFlowDropdownContent.classList.toggle('dropdown-flow-show');
+            this.querySelector('span:last-child').textContent = 
+                dropdownFlowDropdownContent.classList.contains('dropdown-flow-show') ? '▲' : '▼';
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.matches('.dropdown-flow-dropdown-btn') && 
+                !event.target.closest('.dropdown-flow-dropdown-btn') &&
+                !event.target.matches('.dropdown-flow-dropdown-item')) {
+                
+                if (dropdownFlowDropdownContent.classList.contains('dropdown-flow-show')) {
+                    // Highlight nodes in sequence
+                    highlightDropdownFlowNode(10);
+                    setTimeout(() => highlightDropdownFlowNode(11), 300);
+                    setTimeout(() => highlightDropdownFlowNode(12), 600);
+                    setTimeout(() => highlightDropdownFlowNode(13), 900);
+                    setTimeout(() => highlightDropdownFlowNode(14), 1200);
+                    
+                    // Hide dropdown
+                    dropdownFlowDropdownContent.classList.remove('dropdown-flow-show');
+                    dropdownFlowDropdownBtn.querySelector('span:last-child').textContent = '▼';
+                }
+            }
+        });
+        
+        // Handle option selection
+        dropdownFlowDropdownItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Highlight nodes in sequence
+                highlightDropdownFlowNode(15);
+                setTimeout(() => highlightDropdownFlowNode(16), 300);
+                setTimeout(() => highlightDropdownFlowNode(17), 600);
+                setTimeout(() => highlightDropdownFlowNode(18), 900);
+                setTimeout(() => highlightDropdownFlowNode(19), 1200);
+                setTimeout(() => highlightDropdownFlowNode(20), 1500);
+                
+                // Update button text and close dropdown
+                const selectedText = this.textContent;
+                dropdownFlowDropdownBtn.querySelector('span:first-child').textContent = selectedText;
+                dropdownFlowDropdownContent.classList.remove('dropdown-flow-show');
+                dropdownFlowDropdownBtn.querySelector('span:last-child').textContent = '▼';
+            });
+        });
+        
+        // Node highlighting and code preview update
+        function highlightDropdownFlowNode(nodeId) {
+            // Remove highlight from previous node
+            if (dropdownFlowActiveNodeId) {
+                document.getElementById('dropdown-flow-node' + dropdownFlowActiveNodeId).classList.remove('dropdown-flow-active-node');
+            }
+            
+            // Add highlight to current node
+            document.getElementById('dropdown-flow-node' + nodeId).classList.add('dropdown-flow-active-node');
+            dropdownFlowActiveNodeId = nodeId;
+            
+            // Update code preview
+            updateDropdownFlowCodePreview(nodeId);
+            
+            // Scroll node into view
+            document.getElementById('dropdown-flow-node' + nodeId).scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+        
+        // Update code preview
+        function updateDropdownFlowCodePreview(nodeId) {
+            const node = document.getElementById('dropdown-flow-node' + nodeId);
+            const nodeType = node.dataset.type;
+            const snippet = dropdownFlowCodeSnippets[nodeId];
+            
+            // Create preview content
+            const previewHTML = `
+                <div class="dropdown-flow-code-preview-content">
+                    <div class="dropdown-flow-code-preview-title">
+                        <span class="dropdown-flow-code-preview-step dropdown-flow-${nodeType}-preview">${nodeId}</span>
+                        ${node.querySelector('.dropdown-flow-node-title').textContent}
+                    </div>
+                    <div class="dropdown-flow-code-preview-snippet">${snippet.code}</div>
+                    <div class="dropdown-flow-code-preview-explanation">${snippet.explanation}</div>
+                </div>
+            `;
+            
+            // Update both preview areas
+            dropdownFlowCodePreview.innerHTML = previewHTML;
+            dropdownFlowCodePreviewMobile.innerHTML = previewHTML;
+        }
+        
+        // Node click handlers
+        dropdownFlowNodes.forEach(node => {
+            node.addEventListener('click', function() {
+                const nodeId = parseInt(this.id.replace('dropdown-flow-node', ''));
+                highlightDropdownFlowNode(nodeId);
+            });
+        });
+        
+        // Initialize with first node highlighted
+        highlightDropdownFlowNode(1);
+    </script>
+</body>
+</html>

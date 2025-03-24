@@ -798,6 +798,18 @@ button.card-meta:hover {
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
+    .banner-cta {
+          font-size: 45px;
+          font-weight: 700;
+          line-height: 1.1;
+          letter-spacing: -0.02em;
+          margin-bottom: 24px;
+          background: linear-gradient(to right, #000, #555);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
 @media (max-width: 1000px) {
             
 
@@ -817,6 +829,10 @@ button.card-meta:hover {
 
             .sidebar.open {
                 transform: translateX(0);
+            }
+
+            .banner-cta {
+                font-size: 25px;
             }
 
             .main-content {
@@ -1861,7 +1877,7 @@ input[type="color"] {
             <div class="content">
                 <div style="max-width: 1200px; padding:40px 0px 50px 0px;">
                     <span class="label">New</span>
-                    <h1 style="font-size: 45px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; background: linear-gradient(to right, #000, #555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Completely unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS.</h1>
+                    <h1 class="banner-cta">Completely unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS.</h1>
                     <p style="font-size: 16px; line-height: 1.6; color: #666; max-width: 940px; margin-top: 16px;">We are dedicated to empowering developers and designers by providing a comprehensive, modern, and trendy library of frontend UI code snippets and detailed documentation.</p>
                   </div>
 
@@ -4163,6 +4179,8 @@ searchInput.addEventListener('blur', () => {
   </div>`;
                     }
                 },
+
+                
                 {
                     id: 'modern-labels',
                     title: 'Modern Labels',
@@ -4317,6 +4335,16 @@ searchInput.addEventListener('blur', () => {
         };
 
         
+// ADD YOUR CODE RIGHT HERE, AFTER THE COMPONENT LIBRARY DEFINITION
+    // Add detailsUrl to each component
+    componentLibrary.components[0].detailsUrl = "./dropdown-explanation/dropdown-explanation.html";
+    componentLibrary.components[1].detailsUrl = "/details/card-basic.html";
+    componentLibrary.components[2].detailsUrl = "/details/toggle-switch.html";
+    // Add more for other components as needed
+
+
+
+
 
         // Function to render component cards
 function renderComponentCards() {
@@ -4522,7 +4550,8 @@ componentLibrary.components.forEach(component => {
         <div class="card-title">${component.title}</div>
         <div class="card-meta">${component.category}</div>
         <button class="card-meta" onclick="viewSourceCode('${component.id}')">${component.view || 'View Code'}</button>
-        <button class="card-meta" onclick="showCustomOverlay('${component.id}')">Details</button>
+        <button class="card-meta" onclick="window.location.href='${component.detailsUrl || '#'}'">Details</button>
+        
     </div>
 `;
 
