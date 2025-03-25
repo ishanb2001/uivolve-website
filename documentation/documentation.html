@@ -1905,6 +1905,69 @@ input[type="color"] {
     .vcl-search-backdrop.vcl-active {
         display: block;
     }
+
+
+
+        /* Grid layout */
+        .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Card styles */
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      border: 1px solid #eaeaea;
+      padding: 1.75rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: #d0d0d0;
+    }
+
+    .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #666;
+      margin-bottom: 1.25rem;
+      font-weight: 500;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-description {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      
+      body {
+        padding: 1rem;
+      }
+    }
 </style>
 
 
@@ -1936,7 +1999,7 @@ input[type="color"] {
                 </div>
                 <div class="sidebar-section">
                     <div class="sidebar-section-title">Collections</div>
-                    <a href="./documentation/documentation.html" class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                             <polyline points="14 2 14 8 20 8"></polyline>
@@ -2044,12 +2107,57 @@ input[type="color"] {
             <div class="content">
                 <div style="max-width: 1200px; padding:40px 0px 50px 0px;">
                     <span class="label">New</span>
-                    <h1 class="banner-cta">Completely unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS.</h1>
+                    <h1 class="banner-cta">Visual Documentation</h1>
                     <p style="font-size: 16px; line-height: 1.6; color: #666; max-width: 940px; margin-top: 16px;">We are dedicated to empowering developers and designers by providing a comprehensive, modern, and trendy library of frontend UI code snippets and detailed documentation.</p>
                   </div>
 
                 
 
+
+
+                  <div class="grid">
+                    <!-- Card 1 -->
+                    <div class="card">
+                      <div class="label">Documentation</div>
+                      <h2 class="card-title">Getting Started with Next.js</h2>
+                      <p class="card-description">Learn how to set up your first Next.js project and understand the core concepts behind the framework.</p>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="card">
+                      <div class="label">Documentation</div>
+                      <h2 class="card-title">Deploying to Vercel</h2>
+                      <p class="card-description">A step-by-step guide to deploying your Next.js application to Vercel's global edge network.</p>
+                    </div>
+                    
+                    <!-- Card 3 -->
+                    <div class="card">
+                      <div class="label">Documentation</div>
+                      <h2 class="card-title">Edge Functions</h2>
+                      <p class="card-description">Explore how to use Edge Functions to run code at the edge, closer to your users for better performance.</p>
+                    </div>
+                    
+                    <!-- Card 4 -->
+                    <div class="card">
+                      <div class="label">Documentation</div>
+                      <h2 class="card-title">Performance Optimization</h2>
+                      <p class="card-description">Techniques and best practices to optimize your application for speed and user experience.</p>
+                    </div>
+                    
+                    <!-- Card 5 -->
+                    <div class="card">
+                      <div class="label">Documentation</div>
+                      <h2 class="card-title">Serverless Functions</h2>
+                      <p class="card-description">Build and deploy serverless functions that scale automatically with your application's needs.</p>
+                    </div>
+                    
+                    <!-- Card 6 -->
+                    <div class="card">
+                      <div class="label">Documentation</div>
+                      <h2 class="card-title">Advanced Routing</h2>
+                      <p class="card-description">Master complex routing patterns and learn how to structure your application for optimal navigation.</p>
+                    </div>
+                  </div>
                 
                 
             </div>

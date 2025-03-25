@@ -727,7 +727,7 @@ button.card-meta:hover {
       background-color: #eff6ff;
       border-radius: 0.25rem;
       border: 1px solid #dbeafe;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      
       transition: all 0.2s ease;
       margin-bottom: 15px;
     }
@@ -1766,160 +1766,17 @@ input[type="color"] {
 
         /* Removed dark mode media query to ensure light theme always */
     </style>
-
-
-
-
-
-
-<style>
-    /* Reset and base styles */
-    .vcl-search-container * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    /* Container for the entire search component */
-    .vcl-search-container {
-        position: relative;
-        width: 100%;
-        max-width: 500px;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
-
-    /* Search bar styles */
-    .vcl-search-bar {
-        position: relative;
-        width: 100%;
-    }
-
-    .vcl-search-input {
-        width: 100%;
-        padding: 12px 40px 12px 16px;
-        border: 1px solid #eaeaea;
-        border-radius: 8px;
-        font-size: 14px;
-        line-height: 1.5;
-        color: #000;
-        background-color: #fff;
-        transition: all 0.2s ease;
-        outline: none;
-    }
-
-    .vcl-search-input:focus {
-        border-color: #000;
-        box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
-    }
-
-    .vcl-search-icon {
-        position: absolute;
-        right: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #666;
-        pointer-events: none;
-    }
-
-    /* Popup overlay styles */
-    .vcl-search-overlay {
-        position: absolute;
-        top: calc(100% + 8px);
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        transform: translateY(-10px);
-        visibility: hidden;
-        transition: all 0.2s ease;
-        z-index: 1000;
-        overflow: hidden;
-        max-height: 400px;
-        overflow-y: auto;
-    }
-
-    .vcl-search-overlay.vcl-active {
-        opacity: 1;
-        transform: translateY(0);
-        visibility: visible;
-    }
-
-    /* Search results styles */
-    .vcl-search-results {
-        padding: 8px 0;
-    }
-
-    .vcl-search-category {
-        padding: 8px 16px;
-        font-size: 12px;
-        font-weight: 600;
-        color: #666;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .vcl-search-result {
-        padding: 10px 16px;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-    }
-
-    .vcl-search-result:hover {
-        background-color: #f5f5f5;
-    }
-
-    .vcl-search-result-title {
-        font-size: 14px;
-        font-weight: 500;
-        color: #000;
-        margin-bottom: 4px;
-    }
-
-    .vcl-search-result-description {
-        font-size: 13px;
-        color: #666;
-    }
-
-    /* Empty state */
-    .vcl-search-empty {
-        padding: 24px 16px;
-        text-align: center;
-        color: #666;
-        font-size: 14px;
-    }
-
-    /* Backdrop for closing the overlay when clicking outside */
-    .vcl-search-backdrop {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: transparent;
-        z-index: 999;
-        display: none;
-    }
-
-    .vcl-search-backdrop.vcl-active {
-        display: block;
-    }
-</style>
-
-
-
 </head>
 <body>
     <div class="app-container">
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <img src="./uivolve-logo.png" alt="UIVolve Logo" style="width: 20px;">
+                <img src="../uivolve-logo.png" alt="UIVolve Logo" style="width: 20px;">
             </div>
             <nav class="sidebar-nav">
                 <div class="sidebar-section">
-                    <a href="#" class="sidebar-nav-item active">
+                    <a href="../index.html" class="sidebar-nav-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                             <line x1="3" y1="9" x2="21" y2="9"></line>
@@ -1927,7 +1784,7 @@ input[type="color"] {
                         </svg>
                         Home
                     </a>
-                    <a href="./introduction/introduction.html" class="sidebar-nav-item">
+                    <a href="introduction.html" class="sidebar-nav-item active">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
                         </svg>
@@ -1936,7 +1793,7 @@ input[type="color"] {
                 </div>
                 <div class="sidebar-section">
                     <div class="sidebar-section-title">Collections</div>
-                    <a href="./documentation/documentation.html" class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                             <polyline points="14 2 14 8 20 8"></polyline>
@@ -1988,37 +1845,13 @@ input[type="color"] {
                         <line x1="3" y1="18" x2="21" y2="18"></line>
                     </svg>
                 </button>
-
-
-
-
-                
-
-
-
-                <!-- Wrap your existing search bar in our container -->
-    <div class="vcl-search-container">
-        <div class="vcl-search-bar">
-            <input type="text" class="vcl-search-input" placeholder="Search components...">
-            <svg class="vcl-search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-        </div>
-        
-        <!-- Search overlay that appears when searching -->
-        <div class="vcl-search-overlay">
-            <div class="vcl-search-results">
-                <!-- Initial state - will be populated by JS -->
-            </div>
-        </div>
-        
-        <!-- Backdrop for closing the overlay when clicking outside -->
-        <div class="vcl-search-backdrop"></div>
-    </div>
-
-
-
+                <div class="search-bar">
+                    <input type="text" placeholder="Search components...">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </div>
                 <div class="header-actions">
                     <button class="header-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2042,16 +1875,21 @@ input[type="color"] {
             
 
             <div class="content">
-                <div style="max-width: 1200px; padding:40px 0px 50px 0px;">
+                <div style="max-width: 1200px; padding:40px 0px 10px 0px;">
                     <span class="label">New</span>
-                    <h1 class="banner-cta">Completely unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS.</h1>
-                    <p style="font-size: 16px; line-height: 1.6; color: #666; max-width: 940px; margin-top: 16px;">We are dedicated to empowering developers and designers by providing a comprehensive, modern, and trendy library of frontend UI code snippets and detailed documentation.</p>
+                    <h1 class="banner-cta">Plug and Play UI Components</p>
                   </div>
 
-                
+                <div class="tabs">
+                    <div class="tab active">All</div>
+                    <div class="tab">Recent</div>
+                    <div class="tab">Popular</div>
+                </div>
 
                 
-                
+                <div class="card-grid" id="card-grid">
+                    <!-- Cards will be dynamically generated -->
+                </div>
             </div>
         </main>
     </div>
@@ -5612,162 +5450,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initialize with first node highlighted
         highlightDropdownFlowNode(1);
     </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Elements
-        const searchInput = document.querySelector('.vcl-search-input');
-        const searchOverlay = document.querySelector('.vcl-search-overlay');
-        const searchResults = document.querySelector('.vcl-search-results');
-        const searchBackdrop = document.querySelector('.vcl-search-backdrop');
-        
-        // Sample data for search results
-        const sampleResults = {
-            components: [
-                { title: 'Button', description: 'Interactive button component with various styles' },
-                { title: 'Card', description: 'Container to display content in a clear, concise format' },
-                { title: 'Dropdown', description: 'Toggle contextual overlays for displaying lists' }
-            ],
-            templates: [
-                { title: 'Dashboard', description: 'Admin dashboard layout with sidebar and stats' },
-                { title: 'Landing Page', description: 'Conversion-focused page with hero section' }
-            ],
-            documentation: [
-                { title: 'Getting Started', description: 'Learn the basics of our component library' },
-                { title: 'Theming', description: 'Customize the look and feel of components' }
-            ]
-        };
-        
-        // Function to show the overlay
-        function showOverlay() {
-            searchOverlay.classList.add('vcl-active');
-            searchBackdrop.classList.add('vcl-active');
-        }
-        
-        // Function to hide the overlay
-        function hideOverlay() {
-            searchOverlay.classList.remove('vcl-active');
-            searchBackdrop.classList.remove('vcl-active');
-        }
-        
-        // Function to filter and display results
-        function filterResults(query) {
-            // Clear previous results
-            searchResults.innerHTML = '';
-            
-            if (!query.trim()) {
-                // Show all categories if no query
-                renderAllResults();
-                return;
-            }
-            
-            query = query.toLowerCase();
-            let hasResults = false;
-            
-            // Filter and render results for each category
-            for (const [category, items] of Object.entries(sampleResults)) {
-                const filteredItems = items.filter(item => 
-                    item.title.toLowerCase().includes(query) || 
-                    item.description.toLowerCase().includes(query)
-                );
-                
-                if (filteredItems.length > 0) {
-                    hasResults = true;
-                    renderCategory(category, filteredItems);
-                }
-            }
-            
-            // Show empty state if no results found
-            if (!hasResults) {
-                searchResults.innerHTML = `
-                    <div class="vcl-search-empty">
-                        No results found for "${query}"
-                    </div>
-                `;
-            }
-        }
-        
-        // Function to render all results grouped by category
-        function renderAllResults() {
-            searchResults.innerHTML = '';
-            
-            for (const [category, items] of Object.entries(sampleResults)) {
-                renderCategory(category, items);
-            }
-        }
-        
-        // Function to render a category of results
-        function renderCategory(category, items) {
-            const categoryEl = document.createElement('div');
-            categoryEl.className = 'vcl-search-category';
-            categoryEl.textContent = category.charAt(0).toUpperCase() + category.slice(1);
-            
-            const resultsFragment = document.createDocumentFragment();
-            resultsFragment.appendChild(categoryEl);
-            
-            items.forEach(item => {
-                const resultEl = document.createElement('div');
-                resultEl.className = 'vcl-search-result';
-                resultEl.innerHTML = `
-                    <div class="vcl-search-result-title">${item.title}</div>
-                    <div class="vcl-search-result-description">${item.description}</div>
-                `;
-                
-                // Add click event to each result
-                resultEl.addEventListener('click', () => {
-                    console.log(`Selected: ${item.title}`);
-                    searchInput.value = item.title;
-                    hideOverlay();
-                });
-                
-                resultsFragment.appendChild(resultEl);
-            });
-            
-            searchResults.appendChild(resultsFragment);
-        }
-        
-        // Event listeners
-        searchInput.addEventListener('focus', () => {
-            showOverlay();
-            renderAllResults();
-        });
-        
-        searchInput.addEventListener('input', () => {
-            showOverlay();
-            filterResults(searchInput.value);
-        });
-        
-        searchBackdrop.addEventListener('click', hideOverlay);
-        
-        // Close overlay when pressing Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                hideOverlay();
-            }
-        });
-    });
-</script>
 
 
 
